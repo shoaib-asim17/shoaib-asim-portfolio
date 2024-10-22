@@ -27,7 +27,7 @@ const DSA = () => {
     <div className={`flex items-center justify-center min-h-screen p-4 my-28 ${theme === 'dark' ? 'bg-gray-900 text-white shadow-lg' : 'bg-gray-50 text-gray-800 shadow-md'}`} style={{ boxShadow: '0 4px 15px rgba(255, 255, 255, 0.5)' }}>
       <div className="relative flex flex-col items-start bg-gray-200 p-4 rounded-md w-full max-w-lg mx-auto md:max-w-xl lg:max-w-2xl">
         
-        {/* Mapping over the imported content to render paragraphs, headings, and code editors */}
+        {/* Mapping over the imported content to render paragraphs, headings, and code snippets */}
         {codeSnippets.map((code, index) => (
           <SnippetWithText
             key={index}
@@ -36,7 +36,7 @@ const DSA = () => {
             heading={textContent[index].heading} // Access the heading content
             index={index}
             onCopy={copyCode}
-            // theme={theme}
+            theme={theme} // Pass the theme to SnippetWithText
           />
         ))}
       </div>
