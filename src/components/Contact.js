@@ -27,16 +27,29 @@ const Contact = () => {
         setFeedback('');
 
         try {
-            // Simulate an API call
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            const response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: formData.name,
+                    email: formData.email,
+                    message: formData.message,
+                    access_key: 'a426aca3-ad46-48ca-b825-7df15537e51d', // Replace with your Web3Forms access key
+                }),
+            });
 
-            // Here you would typically send formData to your API
-            console.log('Form submitted:', formData);
-
-            // Show success message
-            setFeedback('Your message has been sent successfully!');
+            if (response.ok) {
+                // Show success message
+                setFeedback('Your message has been sent successfully!');
+            } else {
+                // Handle error
+                const errorData = await response.json();
+                setFeedback(`Error: ${errorData.message}`);
+            }
         } catch (error) {
-            // Handle error
+            // Handle network error
             setFeedback('An error occurred. Please try again.');
         } finally {
             setLoading(false);
