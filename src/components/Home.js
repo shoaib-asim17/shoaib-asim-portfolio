@@ -12,7 +12,7 @@ const Home = () => {
           <div className="flex-grow text-center md:text-left mb-8 md:mb-0">
             <h1 className='text-3xl md:text-5xl font-bold'>
               <span>Welcome to </span>
-              <span className='text-red-700'>Mohammed Shoaib Asim</span>
+              <span className='text-red-700'>Mohammed Shoaib Asim's</span>
               <span> Portfolio</span>
             </h1>
             <div className='text-base md:text-lg text-gray-500 font-bold px-2 mt-4'>
