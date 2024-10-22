@@ -36,7 +36,8 @@ const Contact = () => {
                     name: formData.name,
                     email: formData.email,
                     message: formData.message,
-                    access_key: 'a426aca3-ad46-48ca-b825-7df15537e51d', // Replace with your Web3Forms access key
+                    access_key: process.env.NEXT_PUBLIC_WEB3FORMS_API_KEY,
+
                 }),
             });
 
