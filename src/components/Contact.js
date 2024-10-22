@@ -36,7 +36,7 @@ const Contact = () => {
                     name: formData.name,
                     email: formData.email,
                     message: formData.message,
-                    access_key: process.env.NEXT_PUBLIC_WEB3FORMS_API_KEY,
+                    access_key: 'process.env.NEXT_PUBLIC_WEB3FORMS_API_KEY',
 
                 }),
             });
