@@ -1,12 +1,12 @@
-import Navbar from "./components/Navbar";
-import Contact from "./components/Contact";
-import Home from "./components/Home";
-import About from "./components/About";
-import { Qualifications } from "./components/Qualifications";
-import Objective from "./components/Objective";
-import Footer from "./components/Footer";
-import Projects from "./components/Projects";
-import Words_I_Live from "./components/Words_I_Live";
+// import Navbar from "./components/Navbar";
+import Contact from "../components/Contact";
+import Home from "../components/Home";
+import About from "../components/About";
+import { Qualifications } from "../components/Qualifications";
+import Objective from "../components/Objective";
+import Footer from "../components/Footer";
+import Projects from "../components/Projects";
+import Words_I_Live from "../components/Words_I_Live";
 
 export default function Main() {
   return (

@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { useTheme } from '../ThemeContext'; 
+import { useTheme } from '../app/ThemeContext'; 
 
 const cardData = [
   {

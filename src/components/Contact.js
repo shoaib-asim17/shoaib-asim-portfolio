@@ -1,7 +1,7 @@
 "use client"; // Mark this component as a Client Component
 
 import React, { useState } from 'react';
-import { useTheme } from '../ThemeContext'; 
+import { useTheme } from '../app/ThemeContext'; 
 
 const Contact = () => {
     const [formData, setFormData] = useState({

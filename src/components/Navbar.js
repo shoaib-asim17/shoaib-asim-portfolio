@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react';
 import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon } from '@heroicons/react/24/outline';
-import { useTheme } from '../ThemeContext';
+import { useTheme } from '../app/ThemeContext';
 import Link from 'next/link'; // Import Link from next/link
 
 const Navbar = () => {

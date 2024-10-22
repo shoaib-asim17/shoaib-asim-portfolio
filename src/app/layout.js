@@ -3,7 +3,7 @@
 import "./globals.css";
 import { ThemeProvider, useTheme } from './ThemeContext'; 
 import { metadata } from './metadata'; 
-import Navbar from './components/Navbar';
+import Navbar from '../components/Navbar';
 
 
 // Create a BackgroundColor component to handle body background color based on theme

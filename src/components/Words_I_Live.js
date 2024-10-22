@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { useTheme } from '../ThemeContext';
+import { useTheme } from '../app/ThemeContext';
 
 const QuoteCard = ({ quote, photo, name, isRight, theme }) => {
   // Define inline styles for white shadow
