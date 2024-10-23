@@ -25,7 +25,9 @@ const Contact = () => {
         e.preventDefault();
         setLoading(true);
         setFeedback('');
-
+    
+        const juvvu = process.env.NEXT_PUBLIC_JUVVU;
+    
         try {
             const response = await fetch('https://api.web3forms.com/submit', {
                 method: 'POST',
@@ -36,29 +38,20 @@ const Contact = () => {
                     name: formData.name,
                     email: formData.email,
                     message: formData.message,
-                    access_key: process.env.NEXT_PUBLIC_WEB3FORMS_API_KEY,
-
+                    access_key: juvvu,
                 }),
             });
-
+    
+            const result = await response.json();
             if (response.ok) {
-                // Show success message
-                setFeedback('Your message has been sent successfully!');
+                setFeedback('Form submitted successfully!');
             } else {
-                // Handle error
-                const errorData = await response.json();
-                setFeedback(`Error: ${errorData.message}`);
+                setFeedback(`Error: ${result.message}`);
             }
         } catch (error) {
-            // Handle network error
-            setFeedback('An error occurred. Please try again.');
+            setFeedback(`Error: ${error.message}`);
         } finally {
             setLoading(false);
-            setFormData({
-                name: '',
-                email: '',
-                message: ''
-            });
         }
     };
 
