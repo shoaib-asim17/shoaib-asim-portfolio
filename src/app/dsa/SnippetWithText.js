@@ -10,19 +10,22 @@ const SnippetWithText = ({ code, text, heading, index, onCopy, theme }) => {
         {heading}
       </h2>
 
-      {/* Render code snippet as preformatted text */}
-      <pre className="bg-teal-950 p-2 rounded-md overflow-x-auto">
-        <code className="text-sm text-gray-200">{code}</code>
-      </pre>
+      {/* Wrapping code snippet and button in a relative container */}
+      <div className="relative">
+        {/* Render code snippet as preformatted text */}
+        <pre className="bg-teal-950 p-2 rounded-md overflow-x-auto">
+          <code className="text-sm text-gray-200">{code}</code>
+        </pre>
 
-      {/* Copy button as an icon in the top-right corner of the code block */}
-      <button
-        onClick={() => onCopy(code, index)} // Copy the current code
-        className="absolute top-2 right-2 p-1 bg-blue-500 text-white rounded-full hover:bg-black hover:text-white focus:outline-none"
-        aria-label="Copy code to clipboard"
-      >
-        <ClipboardDocumentIcon className="h-6 w-6" />
-      </button>
+        {/* Copy button as an icon in the top-right corner of the code block */}
+        <button
+          onClick={() => onCopy(code, index)} // Copy the current code
+          className="absolute top-2 right-2 p-1 bg-blue-500 text-white rounded-full hover:bg-black hover:text-white focus:outline-none"
+          aria-label="Copy code to clipboard"
+        >
+          <ClipboardDocumentIcon className="h-6 w-6" />
+        </button>
+      </div>
 
       {/* Render corresponding paragraph */}
       <p className="text-gray-700 text-sm md:text-base">{text}</p>
