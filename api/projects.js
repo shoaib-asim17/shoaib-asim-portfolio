@@ -1,90 +1,65 @@
+// api/projects.js
+import express from 'express';
 import mongoose from 'mongoose';
-import Project from '../models/Project'; // Ensure Project.js is properly defined
-import Cors from 'cors';
+import dotenv from 'dotenv';
+import cors from 'cors';
+import Project from '../models/Project.js'; // Adjust the path as necessary
 
-const cors = Cors({
-  origin: process.env.NODE_ENV === 'production' ? 'https://shoaib-asim.vercel.app' : 'http://localhost:3000', // Update with your production URL
-  methods: ['GET', 'POST'],
+dotenv.config();
+const app = express();
+
+// Configure CORS to allow requests from your React app
+const corsOptions = {
+  origin: process.env.NODE_ENV === 'production' ? 'https://shoaib-asim.vercel.app' : 'http://localhost:3000',
+  credentials: true,
+};
+app.use(cors(corsOptions));
+
+app.use(express.json()); // Middleware to parse JSON requests
+
+// Connect to MongoDB
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log('Connected to MongoDB'))
+  .catch(err => console.error('MongoDB connection error:', err));
+
+// Route to get all projects
+app.get('/projects', async (req, res) => {
+  try {
+    const projects = await Project.find();
+    res.json(projects);
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
+  }
 });
 
-// Connect to MongoDB once
-let isConnected = false;
+// Route to like a specific project
+app.post('/projects/:id/like', async (req, res) => {
+  try {
+    const project = await Project.findById(req.params.id);
+    const userId = req.body.userId; // Get user ID from request body
 
-const connectToDatabase = async () => {
-  if (!isConnected) {
-    try {
-      console.log('Connecting to MongoDB...');
-      await mongoose.connect(process.env.MONGO_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-      });
-      isConnected = true;
-      console.log('Connected to MongoDB');
-    } catch (error) {
-      console.error('MongoDB connection error:', error);
-      throw new Error('Database connection failed');
+    if (!project) {
+      return res.status(404).json({ message: 'Project not found' });
     }
+
+    // Check if the user has already liked the project
+    if (project.likedBy.includes(userId)) {
+      return res.status(400).json({ message: 'You have already liked this project' });
+    }
+
+    // Increment likes and add user to likedBy array
+    project.likes += 1;
+    project.likedBy.push(userId); // Add user ID to likedBy array
+    await project.save();
+    
+    res.json({ likes: project.likes });
+  } catch (err) {
+    res.status(500).json({ message: 'Server error' });
   }
-};
+});
 
-// Helper method to run middleware (CORS in this case)
-const runMiddleware = (req, res, fn) => {
-  return new Promise((resolve, reject) => {
-    fn(req, res, (result) => {
-      if (result instanceof Error) {
-        return reject(result);
-      }
-      return resolve(result);
-    });
-  });
-};
-
-// Main API handler
-export default async function handler(req, res) {
-  // Ensure MongoDB connection
-  await connectToDatabase();
-
-  // Run CORS middleware
-  await runMiddleware(req, res, cors);
-
-  if (req.method === 'GET') {
-    try {
-      const projects = await Project.find();
-      console.log('Fetched projects:', projects); // Log fetched projects
-      res.status(200).json(projects);
-    } catch (err) {
-      console.error('Error fetching projects:', err);
-      res.status(500).json({ message: 'Server error: Unable to fetch projects' });
-    }
-  } else if (req.method === 'POST') {
-    const { id } = req.query;
-
-    if (id && req.url.includes('like')) {
-      try {
-        const project = await Project.findById(id);
-        const userId = req.body.userId;
-
-        if (!project) {
-          return res.status(404).json({ message: 'Project not found' });
-        }
-
-        if (project.likedBy.includes(userId)) {
-          return res.status(400).json({ message: 'You have already liked this project' });
-        }
-
-        project.likes += 1;
-        project.likedBy.push(userId);
-        await project.save();
-
-        res.status(200).json({ likes: project.likes });
-      } catch (err) {
-        console.error('Error liking project:', err);
-        res.status(500).json({ message: 'Server error: Unable to like project' });
-      }
-    } else {
-      res.status(400).json({ message: 'Invalid endpoint or missing project ID' });
-    }
-  } else {
-    res.status(405).json({ message: 'Method not allowed' });
-  }
-}
+// Start the server
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`Server running on http://localhost:${PORT}`);
+});
