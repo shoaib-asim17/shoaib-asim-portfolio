@@ -9,12 +9,8 @@ dotenv.config();
 
 const app = express();
 
-// Configure CORS to allow requests from your React app
-const corsOptions = {
-  origin: 'https://shoaib-asim.vercel.app',
-  credentials: true,
-};
-app.use(cors(corsOptions));
+// Configure CORS to allow requests from any origin
+app.use(cors()); // Allows all origins
 
 app.use(express.json()); // Middleware to parse JSON requests
 
