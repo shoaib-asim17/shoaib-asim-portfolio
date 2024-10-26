@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import Project from '../models/Project'; // Assuming you have Project.js defined as a model
+import Project from '../models/Project'; // Ensure Project.js is properly defined
 import Cors from 'cors';
 
 const cors = Cors({
@@ -13,6 +13,7 @@ let isConnected = false;
 const connectToDatabase = async () => {
   if (!isConnected) {
     try {
+      console.log('Connecting to MongoDB...');
       await mongoose.connect(process.env.MONGO_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
@@ -49,6 +50,7 @@ export default async function handler(req, res) {
   if (req.method === 'GET') {
     try {
       const projects = await Project.find();
+      console.log('Fetched projects:', projects); // Log fetched projects
       res.status(200).json(projects);
     } catch (err) {
       console.error('Error fetching projects:', err);
@@ -56,6 +58,7 @@ export default async function handler(req, res) {
     }
   } else if (req.method === 'POST') {
     const { id } = req.query;
+
     if (id && req.url.includes('like')) {
       try {
         const project = await Project.findById(id);
