@@ -1,16 +1,17 @@
-// api/projects.js
 import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import Project from '../models/Project.js'; // Adjust the path as necessary
 
+// Load environment variables from .env file
 dotenv.config();
+
 const app = express();
 
 // Configure CORS to allow requests from your React app
 const corsOptions = {
-  origin: process.env.NODE_ENV === 'production' ? 'https://shoaib-asim.vercel.app' : 'http://localhost:3000',
+  origin: 'https://shoaib-asim.vercel.app',
   credentials: true,
 };
 app.use(cors(corsOptions));
@@ -23,17 +24,18 @@ mongoose.connect(process.env.MONGO_URI)
   .catch(err => console.error('MongoDB connection error:', err));
 
 // Route to get all projects
-app.get('/projects', async (req, res) => {
+app.get('/api/projects', async (req, res) => {
   try {
     const projects = await Project.find();
     res.json(projects);
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error('Error fetching projects:', err); // Log the error
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
 // Route to like a specific project
-app.post('/projects/:id/like', async (req, res) => {
+app.post('/api/projects/:id/like', async (req, res) => {
   try {
     const project = await Project.findById(req.params.id);
     const userId = req.body.userId; // Get user ID from request body
@@ -51,21 +53,13 @@ app.post('/projects/:id/like', async (req, res) => {
     project.likes += 1;
     project.likedBy.push(userId); // Add user ID to likedBy array
     await project.save();
-    
+
     res.json({ likes: project.likes });
   } catch (err) {
-    res.status(500).json({ message: 'Server error' });
+    console.error('Error liking project:', err); // Log the error
+    res.status(500).json({ message: 'Server error', error: err.message });
   }
 });
 
-// Error handling middleware
-app.use((err, req, res, next) => {
-  console.error(err.stack); // Log the error stack trace
-  res.status(500).json({ message: 'Something went wrong!' }); // Respond with a 500 status
-});
-
-// Start the server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
-});
+// Vercel serverless function handler
+export default app;
