@@ -7,11 +7,14 @@ const Projects = () => {
   const [projects, setProjects] = useState([]); // State to store projects
   const [error, setError] = useState(null); // State to store error messages
   const userId = 'unique_user_id'; // Replace with actual user ID logic
+  
+  // Using an environment variable for the API URL
+  const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5000';
 
   useEffect(() => {
     const fetchProjects = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/projects'); // Fetch projects from backend
+        const response = await axios.get(`${API_URL}/projects`); // Fetch projects from backend
         setProjects(response.data); // Set the fetched projects to state
       } catch (error) {
         console.error('Error fetching projects:', error);
@@ -20,14 +23,14 @@ const Projects = () => {
     };
 
     fetchProjects(); // Call fetch function on component mount
-  }, []);
+  }, [API_URL]);
 
   const handleLike = async (id) => {
     try {
-      const response = await axios.post(`http://localhost:5000/projects/${id}/like`, { userId }); // Like project
+      const response = await axios.post(`${API_URL}/projects/${id}/like`, { userId }); // Like project
       setProjects((prevProjects) =>
         prevProjects.map((project) =>
-          project._id === id ? { ...project, likes: response.data.likes } : project // Update likes
+          project._id === id ? { ...project, likes: response.data.likes, likedBy: [...project.likedBy, userId] } : project // Update likes and likedBy
         )
       );
     } catch (error) {
@@ -37,7 +40,7 @@ const Projects = () => {
   };
 
   if (error) {
-    return <p>{error}</p>; // Display error message if there is one
+    return <p className="text-red-500">{error}</p>; // Display error message if there is one
   }
 
   return (
@@ -55,7 +58,7 @@ const Projects = () => {
             <p className="mb-2">Likes: {project.likes}</p>
             <button
               onClick={() => handleLike(project._id)}
-              className="bg-blue-500 text-white rounded-md py-2 hover:bg-blue-600 transition duration-200"
+              className={`bg-blue-500 text-white rounded-md py-2 hover:bg-blue-600 transition duration-200 ${project.likedBy.includes(userId) && 'opacity-50 cursor-not-allowed'}`}
               disabled={project.likedBy.includes(userId)} // Disable button if user has already liked
             >
               {project.likedBy.includes(userId) ? 'Liked' : 'Like'}
