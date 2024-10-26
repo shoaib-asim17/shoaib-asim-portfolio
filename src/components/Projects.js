@@ -1,79 +1,68 @@
-"use client";
-import React from "react";
-import { useTheme } from '../app/ThemeContext';
+"use client"; // Ensure this line is present for client-side rendering
 
-const projects = [
-  {
-    title: "DAA LAB-Programs",
-    description: "daa programs",
-    techs: ["Java"],
-    img: "./images/shoaibPortfolio.jpeg",
-    link: "https://github.com/shoaib-asim17/DaaPrograms.git",
-  },
-  {
-    title: "Personal Portfolio",
-    description: "Professional page for personal portfolio showcase.",
-    techs: ["Tailwind", "JS", "Vite"],
-    img: "./images/shoaibPortfolio.jpeg",
-    link: "https://github.com/shoaib-asim17/AsimTechZenith",
-  },
-  {
-    title: "Python Projects",
-    description: "Projects in Python.",
-    techs: ["Python"],
-    img: "./images/csiblog.jpeg",
-    link: "https://github.com/shoaib-asim17/python-projects",
-  },
-  {
-    title: "CSI Blog",
-    description: "CSI Blogging website.",
-    techs: ["HTML", "CSS", "JS", "MongoDB"],
-    img: "./images/csiblog.jpeg",
-    link: "https://github.com/shoaib-asim17/CSI_Blog",
-  },
-];
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const Projects = () => {
-  const { theme } = useTheme();
+  const [projects, setProjects] = useState([]); // State to store projects
+  const [error, setError] = useState(null); // State to store error messages
+  const userId = 'unique_user_id'; // Replace with actual user ID logic
+
+  useEffect(() => {
+    const fetchProjects = async () => {
+      try {
+        const response = await axios.get('http://localhost:5000/projects'); // Fetch projects from backend
+        setProjects(response.data); // Set the fetched projects to state
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+        setError('Failed to fetch projects. Please try again later.'); // Set error message
+      }
+    };
+
+    fetchProjects(); // Call fetch function on component mount
+  }, []);
+
+  const handleLike = async (id) => {
+    try {
+      const response = await axios.post(`http://localhost:5000/projects/${id}/like`, { userId }); // Like project
+      setProjects((prevProjects) =>
+        prevProjects.map((project) =>
+          project._id === id ? { ...project, likes: response.data.likes } : project // Update likes
+        )
+      );
+    } catch (error) {
+      console.error('Error liking project:', error);
+      alert(error.response?.data?.message || 'An error occurred. Please try again.'); // Show error alert
+    }
+  };
+
+  if (error) {
+    return <p>{error}</p>; // Display error message if there is one
+  }
+
   return (
-    <div className={`max-w-4xl mx-auto p-4 w-full h-screen flex flex-col ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'}`}>
-      <h2 className="text-3xl font-bold text-center mb-6">My Projects</h2>
-      <div className="flex-1 overflow-y-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {projects.map((project, index) => (
-            <div
-              key={index}
-              className="border rounded-lg p-6 shadow-md hover:shadow-2xl transition-shadow duration-300 bg-white"
+    <div className="projects grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
+      {projects.length === 0 ? (
+        <p>No projects available.</p> // Show message if no projects
+      ) : (
+        projects.map((project) => (
+          <div key={project._id} className="project-card border rounded-lg shadow-md p-4 flex flex-col">
+            {project.img && (
+              <img src={project.img} alt={project.title} className="rounded-t-lg mb-4" />
+            )}
+            <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
+            <p className="mb-4">{project.description}</p>
+            <p className="mb-2">Likes: {project.likes}</p>
+            <button
+              onClick={() => handleLike(project._id)}
+              className="bg-blue-500 text-white rounded-md py-2 hover:bg-blue-600 transition duration-200"
+              disabled={project.likedBy.includes(userId)} // Disable button if user has already liked
             >
-              <img
-                src={project.img}
-                alt={project.title}
-                className="w-full h-40 object-cover rounded-md mb-4"
-              />
-              <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
-              <p className="text-gray-700 mb-4">{project.description}</p>
-              <div className="mb-4">
-                {project.techs.map((tech, i) => (
-                  <span
-                    key={i}
-                    className="inline-block bg-gray-200 text-gray-800 px-3 py-1 rounded-full text-sm mr-2 mb-2"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block bg-pink-950 text-white px-4 py-2 rounded hover:bg-pink-900 transition-colors"
-              >
-                View Project
-              </a>
-            </div>
-          ))}
-        </div>
-      </div>
+              {project.likedBy.includes(userId) ? 'Liked' : 'Like'}
+            </button>
+          </div>
+        ))
+      )}
     </div>
   );
 };
