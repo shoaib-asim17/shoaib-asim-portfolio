@@ -1,9 +1,9 @@
 import mongoose from 'mongoose';
-import Project from '../../models/Project'; // Assuming you have Project.js defined as a model
+import Project from '../models/Project'; // Assuming you have Project.js defined as a model
 import Cors from 'cors';
 
 const cors = Cors({
-  origin: 'http://localhost:3000', // Replace with your frontend URL
+  origin: process.env.NODE_ENV === 'production' ? 'https://shoaib-asim.vercel.app' : 'http://localhost:3000', // Update with your production URL
   methods: ['GET', 'POST'],
 });
 
@@ -12,17 +12,22 @@ let isConnected = false;
 
 const connectToDatabase = async () => {
   if (!isConnected) {
-    await mongoose.connect(process.env.MONGO_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
-    isConnected = true;
-    console.log('Connected to MongoDB');
+    try {
+      await mongoose.connect(process.env.MONGO_URI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      });
+      isConnected = true;
+      console.log('Connected to MongoDB');
+    } catch (error) {
+      console.error('MongoDB connection error:', error);
+      throw new Error('Database connection failed');
+    }
   }
 };
 
 // Helper method to run middleware (CORS in this case)
-function runMiddleware(req, res, fn) {
+const runMiddleware = (req, res, fn) => {
   return new Promise((resolve, reject) => {
     fn(req, res, (result) => {
       if (result instanceof Error) {
@@ -31,7 +36,7 @@ function runMiddleware(req, res, fn) {
       return resolve(result);
     });
   });
-}
+};
 
 // Main API handler
 export default async function handler(req, res) {
@@ -46,7 +51,8 @@ export default async function handler(req, res) {
       const projects = await Project.find();
       res.status(200).json(projects);
     } catch (err) {
-      res.status(500).json({ message: 'Server error' });
+      console.error('Error fetching projects:', err);
+      res.status(500).json({ message: 'Server error: Unable to fetch projects' });
     }
   } else if (req.method === 'POST') {
     const { id } = req.query;
@@ -69,10 +75,11 @@ export default async function handler(req, res) {
 
         res.status(200).json({ likes: project.likes });
       } catch (err) {
-        res.status(500).json({ message: 'Server error' });
+        console.error('Error liking project:', err);
+        res.status(500).json({ message: 'Server error: Unable to like project' });
       }
     } else {
-      res.status(400).json({ message: 'Invalid endpoint' });
+      res.status(400).json({ message: 'Invalid endpoint or missing project ID' });
     }
   } else {
     res.status(405).json({ message: 'Method not allowed' });
