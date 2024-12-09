@@ -1,30 +1,29 @@
 // import Navbar from "./components/Navbar";
 import Contact from "../components/Contact";
 import Home from "../components/Home";
-import About from "../components/About";
+// import About from "../components/About";
 import { Qualifications } from "../components/Qualifications";
 import Objective from "../components/Objective";
 import Footer from "../components/Footer";
 import Projects from "../components/Projects";
 import Words_I_Live from "../components/Words_I_Live";
+import AboutMe from "../components/aboutMe";
 
 export default function Main() {
   return (
     <div className="container mx-auto">
-      {/* <section className="py-1">
-        <Navbar />
-      </section> */}
+      
 
       <section id="Home" className="py-1">
         <Home />
       </section>
 
-      {/* Static Sections */}
+     
       <section id="About" className="py-1">
-        <About />
+        <AboutMe/>
       </section>
 
-      <section className="py-1">
+      <section id= "Objective" className="py-1">
         <Objective />
       </section>
 
@@ -44,7 +43,7 @@ export default function Main() {
         <Contact />
       </section>
 
-      {/* Footer Section */}
+  
       <section className="py-1">
         <Footer />
       </section>

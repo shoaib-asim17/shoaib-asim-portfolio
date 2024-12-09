@@ -1,4 +1,4 @@
-"use client"; // Ensure this is a client component
+"use client"; 
 
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
@@ -34,19 +34,19 @@ const cardData = [
 ];
 
 const Objective = () => {
-  const [key, setKey] = useState(0); // Add a key to remount the component
-  const router = useRouter(); // Next.js router
-  const { theme } = useTheme(); // Get the current theme from context
+  const [key, setKey] = useState(0); 
+  const router = useRouter(); 
+  const { theme } = useTheme(); 
 
   useEffect(() => {
     const handleRouteChange = () => {
-      setKey((prevKey) => prevKey + 1); // Update key to force re-render and reset animation
+      setKey((prevKey) => prevKey + 1); 
     };
 
     window.addEventListener('popstate', handleRouteChange);
 
     return () => {
-      window.removeEventListener('popstate', handleRouteChange); // Cleanup listener
+      window.removeEventListener('popstate', handleRouteChange); 
     };
   }, [router]);
 
@@ -75,14 +75,14 @@ const Objective = () => {
       animate="visible"
       variants={cardVariants}
       transition={{ duration: 0.6, delay }}
-      role="button" // Add role for accessibility
-      tabIndex={0} // Make card focusable
-      onClick={() => console.log(title)} // Example click handler
-      onKeyPress={(e) => { if (e.key === 'Enter') console.log(title); }} // Handle keyboard navigation
+      role="button" 
+      tabIndex={0} 
+      onClick={() => console.log(title)} 
+      onKeyPress={(e) => { if (e.key === 'Enter') console.log(title); }} 
     >
       <div className="p-4">
-        <h2 className="text-lg font-semibold">{title}</h2>
-        <p className="mt-2">{description}</p>
+        <h2 className="text-lg font-semibold bg-teal-900 rounded-md text-white px-2">{title}</h2>
+        <p className="mt-2">⭐{description}</p>
       </div>
     </motion.div>
   );
@@ -90,7 +90,7 @@ const Objective = () => {
   return (
     <motion.div
       key={key}
-      className={`objective min-h-screen p-4 ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-800'}`}
+      className={`objective min-h-screen p-4 ${theme === 'dark' ? 'bg-gray-900 text-white' : ' text-gray-800'}`}
       initial="initial"
       animate="in"
       exit="out"
@@ -98,8 +98,9 @@ const Objective = () => {
       transition={pageTransition}
     >
       {/* Objective heading */}
-      <h1 className="text-center text-3xl font-bold mb-8">Objective</h1>
-
+      <h1 className="font-lato font-light text-center text-4xl tracking-tight mb-8 bg-yellow-100 rounded-3xl text-gray-900 dark:text-black">
+  Objective
+</h1>
       {/* Grid for cards */}
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {cardData.map((card, index) => (

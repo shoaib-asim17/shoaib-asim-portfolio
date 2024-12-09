@@ -56,9 +56,12 @@ const Contact = () => {
     };
 
     return (
-        <div className={`min-h-screen flex items-center justify-center ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-gray-50 text-gray-800'}`}>
+        <div className={`min-h-screen flex items-center justify-center ${theme === 'dark' ? ' text-white' : ' text-gray-800'}`}>
             <div className={`max-w-md w-full p-6 rounded-lg shadow-md ${theme === 'dark' ? 'bg-gray-700' : 'bg-white'}`} style={{ boxShadow: '0 4px 15px rgba(255, 255, 255, 0.5)' }}>
-                <h1 className="text-3xl font-bold text-center mb-6">Contact Me</h1>
+            <h1 className="font-lato font-light text-center text-4xl tracking-tight mb-8 bg-yellow-100 rounded-3xl text-gray-900 dark:text-black">
+  Contact Me
+</h1>
+
                 <p className="text-center mb-4">Feel free to reach out for any inquiries or collaboration!</p>
                 {feedback && <p className="text-center mb-4 text-green-500">{feedback}</p>}
                 <form onSubmit={handleSubmit}>

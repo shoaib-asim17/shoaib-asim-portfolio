@@ -1,80 +1,149 @@
-"use client"; // Ensure this line is present for client-side rendering
-
-import React, { useEffect, useState } from "react";
+"use client";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 
 const Projects = () => {
-  const [projects, setProjects] = useState([]); // State to store projects
-  const [error, setError] = useState(null); // State to store error messages
-  const userId = 'unique_user_id'; // Replace with actual user ID logic
+  const [projects, setProjects] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [userId] = useState("zufishan sadaf"); // Replace with actual user authentication logic
+  const API_BASE_URL =
+    process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
 
-  // Using an environment variable for the API URL
-  const API_URL = process.env.NEXT_PUBLIC_API_URL;
-
+  // Fetch projects from API
   useEffect(() => {
-    // Function to fetch projects from the API
     const fetchProjects = async () => {
-      console.log('Fetching projects from:', `${API_URL}/projects`); // Log the API URL for debugging
       try {
-        const response = await axios.get(`${API_URL}/projects`); // Fetch projects from backend
-        setProjects(response.data); // Set the fetched projects to state
-      } catch (error) {
-        console.error('Error fetching projects:', error); // Log the error
-        console.error('Response data:', error.response?.data); // Log response data if available
-        setError('Failed to fetch projects. Please try again later.'); // Set error message
+        const response = await axios.get(`${API_BASE_URL}/projects`);
+        setProjects(response.data);
+      } catch (err) {
+        console.error("Error fetching projects:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchProjects(); // Call fetch function on component mount
-  }, [API_URL]); // Dependency array ensures this effect runs only once unless API_URL changes
+    fetchProjects();
+  }, [API_BASE_URL]);
 
-  // Function to handle liking a project
+  // Handle like button functionality with optimistic UI update
   const handleLike = async (id) => {
+    // Optimistic Update
+    setProjects((prevProjects) =>
+      prevProjects.map((project) =>
+        project._id === id
+          ? {
+              ...project,
+              likes: project.likes + 1,
+              likedBy: [...project.likedBy, userId],
+            }
+          : project
+      )
+    );
+
     try {
-      const response = await axios.post(`${API_URL}/projects/${id}/like`, { userId }); // Like project
+      const response = await axios.post(`${API_BASE_URL}/projects/${id}/like`, {
+        userId,
+      });
+      // Confirm server update
       setProjects((prevProjects) =>
         prevProjects.map((project) =>
           project._id === id
-            ? { ...project, likes: response.data.likes, likedBy: [...project.likedBy, userId] } // Update likes and likedBy
+            ? {
+                ...project,
+                likes: response.data.likes,
+                likedBy: response.data.likedBy,
+              }
             : project
         )
       );
-    } catch (error) {
-      console.error('Error liking project:', error); // Log the error
-      alert(error.response?.data?.message || 'An error occurred. Please try again.'); // Show error alert
+    } catch (err) {
+      alert(err.response?.data?.message || "An error occurred.");
+      // Revert optimistic update in case of failure
+      setProjects((prevProjects) =>
+        prevProjects.map((project) =>
+          project._id === id
+            ? {
+                ...project,
+                likes: project.likes - 1,
+                likedBy: project.likedBy.filter((uid) => uid !== userId),
+              }
+            : project
+        )
+      );
     }
   };
 
-  // Render error message if there is one
-  if (error) {
-    return <p className="text-red-500">{error}</p>;
-  }
+  // Card Component to display individual project details
+  const Card = ({ project }) => {
+    return (
+      <div className="bg-white p-4 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+        {/* Project Image */}
+        {project.imageUrl && (
+          <img
+            src={project.imageUrl}
+            alt={project.title}
+            className="w-full h-48 object-cover rounded-lg mb-4"
+          />
+        )}
 
-  // Render the projects
+        {/* Project Title */}
+        <h3 className="text-xl font-semibold text-gray-800">{project.title}</h3>
+
+        {/* Project Description */}
+        <p className="text-gray-600 my-2">{project.description}</p>
+
+        {/* Likes Count */}
+        <p className="text-gray-500">Likes: {project.likes}</p>
+
+       {/* Like Button */}
+<button
+  onClick={() => handleLike(project._id)}
+  disabled={project.likedBy.includes(userId)}
+  className={`mt-2 px-4 py-2 rounded-full text-white ${
+    project.likedBy.includes(userId)
+      ? "bg-gray-400"
+      : "bg-blue-500 hover:bg-blue-700"
+  } mr-4`} /* Add right margin to the Like button */
+>
+  {project.likedBy.includes(userId) ? "Liked" : "Like"}
+</button>
+
+{/* GitHub Link */}
+{project.githubLink && (
+  <a
+    href={project.githubLink}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="mt-2 px-4 py-2 bg-red-600 text-white font-medium text-center rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2"
+  >
+    Code
+  </a>
+)}
+
+
+
+      </div>
+    );
+  };
+
   return (
-    <div className="projects grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-4">
-      {projects.length === 0 ? (
-        <p>No projects available.</p> // Show message if no projects
+    <>
+    {/* <div className="flex justify-between items-center mb-6"> */}
+    <h1 className="font-lato font-light text-4xl tracking-tight mb-2 text-center  bg-yellow-100 rounded-3xl">Projects</h1>
+
+  
+    
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6">
+      
+      {loading ? (
+        <p>Loading projects...</p>
+      ) : projects.length === 0 ? (
+        <p>No projects available</p>
       ) : (
-        projects.map((project) => (
-          <div key={project._id} className="project-card border rounded-lg shadow-md p-4 flex flex-col">
-            {project.img && (
-              <img src={project.img} alt={project.title} className="rounded-t-lg mb-4" />
-            )}
-            <h3 className="text-lg font-semibold mb-2">{project.title}</h3>
-            <p className="mb-4">{project.description}</p>
-            <p className="mb-2">Likes: {project.likes}</p>
-            <button
-              onClick={() => handleLike(project._id)}
-              className={`bg-blue-500 text-white rounded-md py-2 hover:bg-blue-600 transition duration-200 ${project.likedBy.includes(userId) ? 'opacity-50 cursor-not-allowed' : ''}`}
-              disabled={project.likedBy.includes(userId)} // Disable button if user has already liked
-            >
-              {project.likedBy.includes(userId) ? 'Liked' : 'Like'}
-            </button>
-          </div>
-        ))
+        projects.map((project) => <Card key={project._id} project={project} />)
       )}
     </div>
+    </>
   );
 };
 

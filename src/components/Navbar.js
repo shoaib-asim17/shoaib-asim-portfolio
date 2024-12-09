@@ -15,27 +15,26 @@ const Navbar = () => {
     <nav className={`px-2 py-1 w-full fixed top-0 left-0 z-50 shadow-md backdrop-blur-lg ${theme === 'dark' ? 'bg-gray-900 bg-opacity-10' : 'bg-gray-50 bg-opacity-70'}`}>
       <div className="container mx-auto flex justify-between items-center">
         <a href="/#About">
-          <div className={`text-lg font-bold flex items-center mx-2 rounded-md p-2 hover:shadow-md ${theme === 'dark' ? 'bg-gray-100 text-gray-900' : 'bg-pink-950 text-white'}`}>
+          <div className={`text-lg font-bold flex items-center mx-2 rounded-md p-2 hover:shadow-md ${theme === 'dark' ? ' text-gray-900' : ' text-white'}`}>
             <img
-              src={"./images/zorawar.jpg"}
+              src={"./images/shoaib asim.png"}
               alt="zorawar"
               className="w-20 rounded-full"
             />
-            <div className="nameandrole flex flex-col px-2">
+            {/* <div className="nameandrole flex flex-col px-2">
               <span className="ml-2 text-lg font-bold">Mohammed Shoaib Asim</span>
-              <p className="text-pink-300 text-sm font-serif px-2 hover:text-yellow-400">Full Stack Developer</p>
-            </div>
+              <p className="text-pink-300 text-sm font-serif px-2 hover:text-yellow-400 ">Full Stack Developer</p>
+            </div> */}
           </div>
         </a>
 
-        {/* Navbar Links for Desktop */}
         <div className="hidden md:flex space-x-10">
-          <a href="/#Home" className={`hover:text-white hover:bg-pink-950 hover:px-3 py-2 rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>Home</a>
-          <a href="/#About" className={`hover:text-white hover:bg-pink-950 hover:px-3 py-2 rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>About</a>
-          <a href="/#Projects" className={`hover:text-white hover:bg-pink-950 hover:px-3 py-2 rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>Projects</a>
-          <a href="/#Contact" className={`hover:text-white hover:bg-pink-950 hover:px-3 py-2 rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>Contact</a>
+          <a href="/#Home" className={`hover:text-white hover:bg-pink-950 hover:px-3 py-2 text-lg font-serif rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>Home</a>
+          <a href="/#About" className={`hover:text-white hover:bg-pink-950 hover:px-3 py-2 text-lg font-serif rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>About</a>
+          <a href="/#Projects" className={`hover:text-white hover:bg-pink-950 hover:px-3 py-2 text-lg font-serif rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>Projects</a>
+          <a href="/#Contact" className={`hover:text-white hover:bg-pink-950 hover:px-3 py-2 text-lg font-serif rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>Contact</a>
           <Link href="/dsa" legacyBehavior>
-            <a className={`hover:text-white hover:bg-pink-950 hover:px-3 py-2 rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>DSA</a>
+            <a className={`hover:text-white hover:bg-pink-950 hover:px-3 py-2 text-lg font-serif rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>DSA</a>
           </Link>
           <div className="relative">
             <button
@@ -49,6 +48,7 @@ const Navbar = () => {
               <div className="absolute right-0 bg-pink-950 backdrop-blur-3xl bg-opacity text-white rounded shadow-lg mt-2 z-10">
                 <a href="/#Words_I_Live" className="block px-4 py-2 hover:bg-pink-100 hover:text-pink-950">Quotes</a>
                 <a href="/#Qualifications" className="block px-4 py-2 hover:bg-pink-100 hover:text-pink-950">Qualifications</a>
+                <a href="/#Objective" className="block px-4 py-2 hover:bg-pink-100 hover:text-pink-950">Objective</a>
               </div>
             )}
           </div>
@@ -99,6 +99,8 @@ const Navbar = () => {
               <div className="absolute left-0 bg-gray-600 text-white rounded shadow-lg mt-2 z-10">
                 <a href="/#Words_I_Live" className="block px-4 py-2 hover:bg-gray-500">Quotes</a>
                 <a href="/#Qualifications" className="block px-4 py-2 hover:bg-gray-500">Qualifications</a>
+                <a href="/#Objective" className="block px-4 py-2 hover:bg-gray-500">Objective</a>
+
               </div>
             )}
           </div>

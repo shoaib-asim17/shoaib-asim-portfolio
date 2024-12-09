@@ -1,59 +1,41 @@
 "use client";
-import React, { useEffect } from 'react';
-import { useTheme } from '../app/ThemeContext';
 
-const Home = () => {
-  const { theme, toggleTheme } = useTheme();
+import React from 'react';
+import HeaderTags from './headerTags';
+import { useTheme } from '../app/ThemeContext'; 
 
-  useEffect(() => {
-    const bubbleContainer = document.querySelector('.bubble-container');
-    const numberOfBubbles = 50; 
 
-    // Clear any previous bubbles before adding new ones
-    bubbleContainer.innerHTML = '';
-
-    for (let i = 0; i < numberOfBubbles; i++) {
-      const bubble = document.createElement('div');
-      bubble.classList.add('bubble');
-      bubble.style.width = `${Math.random() * 50 + 10}px`;  // Random size
-      bubble.style.height = bubble.style.width;
-      bubble.style.left = `${Math.random() * 100}%`;  // Random starting position
-      bubble.style.animationDelay = `${Math.random() * 5}s`;  // Random animation delay
-      bubbleContainer.appendChild(bubble);
-    }
-  }, []);
-
+const AboutMe = () => {
+  const { theme } = useTheme();
   return (
-    <div className={`home my-12 min-h-screen p-5 rounded-lg relative transition duration-300 ease-in-out ${theme === 'dark' ? 'bg-cyan-300 text-white shadow-lg backdrop-blur-sm ' : 'text-gray-800 shadow-md'}`} style={{ boxShadow: '0 4px 15px rgba(255, 255, 255, 0.5)' }}>
-      {/* Bubble container where bubbles will be dynamically added */}
-      <div className="bubble-container"></div>
+    <main className={`px-4 lg:px-8 pt-16 ${theme === 'dark' ? 'bg-gray-900 text-gray-100  ' : ' text-gray-800'}`}>
+      <section className="py-6 lg:py-14">
+       
+        <div className="container flex flex-col lg:flex-row items-start justify-start  ">
+          {/* Main content left */}
+          <div className="lg:pr-8 w-2/6 lg:w-full pb-4 lg:pb-">
+            <img
+              className="w-full rounded-full p-1 ring-2 ring-blue-400 dark:ring-gray-500 shadow-lg"
+              src="./images/shoaibasimpic.jpg"
+              alt="asim"
+            />
+          </div>
+          {/* Main content right */}
+          <div>
+            {/* Header area */}
+            <div className="header mb-16">
+            <p className={`text-lg font-serif ${theme === 'dark' ? 'text-gray-100' : 'text-gray-900'}`}>
+  Mohammed Shoaib Asim
+</p>
 
-      <div className='container mx-auto mt-8 md:mt-24'>
-        <div className="text-center relative flex flex-col md:flex-row items-center justify-between mx-5">
-          <div className="flex-grow text-center md:text-left mb-8 md:mb-0">
-            <h1 className='text-3xl md:text-5xl font-bold'>
-              <span>Welcome to </span>
-              <span className='text-red-700 font-mono bg-white rounded-md'>Mohammed Shoaib Asim's</span>
-              <span> Portfolio</span>
-            </h1>
-            <div className='text-base md:text-lg text-gray-500 font-serif px-2 mt-4'>
-              <p>This is a simple portfolio website created using React and Tailwind CSS.</p>
-              <p>You can view my projects, experience, and contact information on this website.</p>
-              <p>Enjoy!</p>
-            </div>
-            <div className='buttons justify-center md:justify-start mt-8 flex flex-wrap'>
-              <a href="/Resume_103.pdf" target="_blank" className="w-full sm:w-auto">
-                <button className="bg-gray-900 text-white font-mono py-2 px-4 mt-2 mx-3 rounded hover:bg-blue-700 transition duration-300">
-                  Resume
-                </button>
-              </a>
-              <a href="#About" className="w-full sm:w-auto">
-                <button className="bg-red-900 text-white font-mono py-2 px-4 mt-2 mx-3 rounded hover:bg-blue-700 transition duration-300">
-                  Read more
-                </button>
-              </a>
-            </div>
-            <div className='links mt-5 mx-4 flex justify-center md:justify-start space-x-4'>
+              <p className={`text-md font-normal ${theme === 'dark' ? 'text-gray-400' : 'text-gray-800'}`}>
+                student at Muffakham Jah College Of Engineering And Technology.
+              </p>
+              <h2 className={`text-md font-normal ${theme === 'dark' ? 'text-gray-400' : 'text-gray-800'}`}>
+                MERN, Full-Stack Web Developer.
+              </h2>
+
+              <div className='links mt-7  flex justify-center md:justify-start space-x-4'>
                {/* Social media icons (unchanged) */}
                <a href='https://www.linkedin.com/in/mohammed-shoaib-asim-b04467206?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app ' target='_blank' className='hover:shadow-md shadow-red-800 hover:shadow-pink-800'>
                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
@@ -89,11 +71,25 @@ const Home = () => {
                   </svg>
                 </a>
             </div>
+            <div className='header-tags py-2'>
+
+              <HeaderTags/>
+            </div>
+
+
+            </div>
+
+            {/* Description area */}
+            <div className=" bg-slate-100 py-4 px-2 main font-serif rounded-md text-gray-800 dark:text-gray-400 ">
+              <p>
+                I am a passionate web developer with a strong focus on full-stack development. I specialize in the MERN stack (MongoDB, Express.js, React, and Node.js). Currently, I am pursuing my Bachelor's degree in Computer Science Engineering at Muffakham Jah College of Engineering and Technology. I am constantly learning new technologies to enhance my skills and contribute to innovative projects.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
+      </section>
+    </main>
   );
 };
 
-export default Home;
+export default AboutMe;
