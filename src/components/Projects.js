@@ -5,9 +5,9 @@ import axios from "axios";
 const Projects = () => {
   const [projects, setProjects] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [userId] = useState("zufishan sadaf"); // Replace with actual user authentication logic
+  const [userId] = useState("zufishan sadaf"); 
   const API_BASE_URL =
-    process.env.REACT_APP_API_BASE_URL || "http://localhost:5000";
+    process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000";
 
   // Fetch projects from API
   useEffect(() => {

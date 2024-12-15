@@ -32,7 +32,7 @@ app.get("/projects", async (req, res) => {
     res.json(projects);
   } catch (err) {
     console.error("Error fetching projects:", err);
-    res.status(500).json({ message: "Failed to fetch projects." });
+    res.status(500).json({ message: "The database has not been deployed to Vercel." });
   }
 });
 
