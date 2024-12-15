@@ -138,7 +138,7 @@ const Projects = () => {
       {loading ? (
         <p>Loading projects...</p>
       ) : projects.length === 0 ? (
-        <p>No projects available</p>
+        <p>The database has not been deployed to Vercel.</p>
       ) : (
         projects.map((project) => <Card key={project._id} project={project} />)
       )}
