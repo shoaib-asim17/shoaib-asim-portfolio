@@ -3,6 +3,8 @@ import React, { useState } from 'react';
 import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon } from '@heroicons/react/24/outline';
 import { useTheme } from '../app/ThemeContext';
 import Link from 'next/link'; // Import Link from next/link
+// import { HiHome } from "react-icons/hi2";
+import { HiHome, HiUser, HiBriefcase, HiMail ,  HiBookOpen } from "react-icons/hi";
 
 const Navbar = () => {
   const [isOpen, setIsOpen, ] = useState(false);
@@ -29,17 +31,45 @@ const Navbar = () => {
         </a>
 
         <div className="hidden md:flex space-x-10">
-          <a href="/#Home" className={`hover:text-white hover:bg-pink-950 hover:px-3 py-2 text-lg font-serif rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>Home</a>
-          <a href="/#About" className={`hover:text-white hover:bg-pink-950 hover:px-3 py-2 text-lg font-serif rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>About</a>
-          <a href="/#Projects" className={`hover:text-white hover:bg-pink-950 hover:px-3 py-2 text-lg font-serif rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>Projects</a>
-          <a href="/#Contact" className={`hover:text-white hover:bg-pink-950 hover:px-3 py-2 text-lg font-serif rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>Contact</a>
-          <Link href="/dsa" legacyBehavior>
-            <a className={`hover:text-white hover:bg-pink-950 hover:px-3 py-2 text-lg font-serif rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>DSA</a>
-          </Link>
+
+                      <a href="/#Home" 
+              className={`flex items-center gap-2 hover:text-white hover:bg-green-600 hover:px-3 py-2 text-lg font-serif rounded-md 
+              ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>
+              <HiHome className="w-5 h-5" />
+              Home
+            </a>
+
+
+            <a href="/#About" className={`flex items-center gap-2 hover:text-white hover:bg-green-600 hover:px-3 py-2 text-lg font-serif rounded-md 
+            ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>
+              <HiUser className="w-5 h-5" />
+              About
+            </a>
+
+            <a href="/#Projects" className={`flex items-center gap-2 hover:text-white hover:bg-green-600 hover:px-3 py-2 text-lg font-serif rounded-md 
+            ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>
+              <HiBriefcase className="w-5 h-5" />
+              Projects
+            </a>
+
+            <a href="/#Contact" className={`flex items-center gap-2 hover:text-white hover:bg-green-600 hover:px-3 py-2 text-lg font-serif rounded-md 
+            ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>
+              <HiMail className="w-5 h-5" />
+              Contact
+            </a>
+
+
+<Link href="/dsa" className={`flex items-center gap-2 hover:text-white hover:bg-green-600 hover:px-3 py-2 text-lg font-serif rounded-md 
+${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>
+   <HiBookOpen className="w-5 h-5" />
+   Learn
+</Link>
+
+
           <div className="relative">
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="text-pink-300 hover:text-white hover:bg-pink-950 hover:px-3 py-2 rounded-md"
+              className={` hover:text-white hover:bg-green-600 hover:px-3 py-2 rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}
               aria-expanded={isDropdownOpen}
             >
               More
@@ -56,7 +86,7 @@ const Navbar = () => {
           {/* Theme Toggle Button with Icons */}
           <button
             onClick={toggleTheme}
-            className={`flex items-center px-4 py-2 rounded-md ${theme === 'dark' ? 'text-white' : 'text-dark'} hover:bg-pink-700`}
+            className={`flex items-center px-4 py-2 rounded-md ${theme === 'dark' ? 'text-white' : 'text-dark'} `}
           >
             {theme === 'light' ? (
               <>
@@ -81,11 +111,33 @@ const Navbar = () => {
       {/* Mobile Menu */}
       {isOpen && (
         <div className={`md:hidden ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-700'}`}>
-          <a href="/#Home" className="block px-4 py-2 text-white">Home</a>
-          <a href="/#About" className="block px-4 py-2 text-white">About</a>
-          <a href="/#Projects" className="block px-4 py-2 text-white">Projects</a>
-          <a href="/#Contact" className="block px-4 py-2 text-white">Contact</a>
-          <a href="/dsa" className="block px-4 py-2 text-white">DSA</a>
+          {/* <a href="/#Home" className="block px-4 py-2 text-white">Home</a>
+          <HiHome /> */}
+          <a href="/#Home" className="block px-4 py-2 text-white flex items-center">
+  <HiHome className="w-5 h-5 mr-2" />
+  Home
+</a>
+
+
+<a href="/#About" className="flex items-center gap-2 px-4 py-2 text-white hover:bg-gray-700 rounded-md">
+   <HiUser className="w-5 h-5" />
+   About
+</a>
+
+<a href="/#Projects" className="flex items-center gap-2 px-4 py-2 text-white hover:bg-gray-700 rounded-md">
+   <HiBriefcase className="w-5 h-5" />
+   Projects
+</a>
+
+<a href="/#Contact" className="flex items-center gap-2 px-4 py-2 text-white hover:bg-gray-700 rounded-md">
+   <HiMail className="w-5 h-5" />
+   Contact
+</a>
+
+<a href="/dsa" className="flex items-center gap-2 px-4 py-2 text-white hover:bg-gray-700 rounded-md">
+   <HiBookOpen className="w-5 h-5" />
+   DSA
+</a>
 
           <div className="relative">
             <button

@@ -70,27 +70,33 @@ const Objective = () => {
   // Reusable Card component
   const Card = ({ title, description, delay }) => (
     <motion.div
-      className={`max-w-sm mx-auto rounded-lg shadow-xl shadow-slate-400 overflow-hidden my-2 ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'}`}
+      className={`max-w-sm mx-auto rounded-lg shadow-xl overflow-hidden my-2 ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'}`}
       initial="hidden"
       animate="visible"
       variants={cardVariants}
       transition={{ duration: 0.6, delay }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
       role="button" 
       tabIndex={0} 
-      onClick={() => console.log(title)} 
-      onKeyPress={(e) => { if (e.key === 'Enter') console.log(title); }} 
+      onClick={() => handleCardClick(title)} 
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCardClick(title); }} 
     >
       <div className="p-4">
-        <h2 className="text-lg font-semibold bg-teal-900 rounded-md text-white px-2">{title}</h2>
+        <h2 className="text-lg font-semibold bg-red-100  text-blue-950 px-2">{title}</h2>
         <p className="mt-2">⭐{description}</p>
       </div>
     </motion.div>
   );
 
+  const handleCardClick = (title) => {
+    console.log(title);
+  };
+
   return (
     <motion.div
       key={key}
-      className={`objective min-h-screen p-4 ${theme === 'dark' ? 'bg-gray-900 text-white' : ' text-gray-800'}`}
+      className={`objective min-h-screen p-4 ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-800'}`}
       initial="initial"
       animate="in"
       exit="out"
@@ -98,9 +104,9 @@ const Objective = () => {
       transition={pageTransition}
     >
       {/* Objective heading */}
-      <h1 className="font-lato font-light text-center text-4xl tracking-tight mb-8 bg-yellow-100 rounded-3xl text-gray-900 dark:text-black">
-  Objective
-</h1>
+      <h2 className={`text-5xl font-sans font-bold text-center py-8 mb-5 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}> 🎯 Mission in Focus: My Path to Success</h2>
+
+
       {/* Grid for cards */}
       <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
         {cardData.map((card, index) => (

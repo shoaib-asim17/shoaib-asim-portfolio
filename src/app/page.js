@@ -14,39 +14,39 @@ export default function Main() {
     <div className="container mx-auto">
       
 
-      <section id="Home" className="py-1">
+      <div id="Home" className="py-1">
         <Home />
-      </section>
+      </div>
 
      
-      <section id="About" className="py-1">
+      <div id="About" className="py-1">
         <AboutMe/>
-      </section>
+      </div>
 
-      <section id= "Objective" className="py-1">
+      <div id= "Objective" className="py-1">
         <Objective />
-      </section>
+      </div>
 
-      <section id="Words_I_Live" className="py-1">
+      <seciton id="Words_I_Live" className="py-1">
         <Words_I_Live />
-      </section>
+      </seciton>
 
-      <section id="Projects" className="py-1">
+      <div id="Projects" className="py-1">
         <Projects />
-      </section>
+      </div>
 
-      <section id="Qualifications" className="py-1">
+      <div id="Qualifications" className="py-1">
         <Qualifications />
-      </section>
+      </div>
 
-      <section id="Contact" className="py-1">
+      <div id="Contact" className="py-1">
         <Contact />
-      </section>
+      </div>
 
   
-      <section className="py-1">
+      <div className="py-1">
         <Footer />
-      </section>
+      </div>
     </div>
   );
 }
