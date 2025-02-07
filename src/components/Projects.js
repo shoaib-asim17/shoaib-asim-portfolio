@@ -37,7 +37,7 @@ const Projects = () => {
   const Card = ({ project }) => (
     <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
       <div className="flex justify-center">{project.icon}</div> {/* Icon above title */}
-      <h3 className="text-xl font-semibold text-gray-800 dark:text-white text-center mt-4">
+      <h3 className="text-xl font-semibold text-gray-900 dark:text-white text-center mt-4">
         {project.title}
       </h3>
       {project.imageUrl && (
@@ -47,14 +47,13 @@ const Projects = () => {
           className="w-full h-48 object-cover rounded-lg my-4"
         />
       )}
-      <p className="text-gray-600 dark:text-gray-300 my-2">{project.description}</p>
-      <p className="text-gray-500 dark:text-gray-400 text-center">⭐ {project.likes} Likes</p>
+      <p className="text-gray-900 dark:text-white my-2">{project.description}</p>
+      <p className="text-gray-700 dark:text-gray-300 text-center">⭐ {project.likes} Likes</p>
       {project.githubLink && (
         <a
           href="/#Contact"
-          // target="_blank"
           rel="noopener noreferrer"
-          className="mt-4 block text-center px-4 py-2 border-2 border-green-500   font-medium rounded hover:bg-green-500 hover:text-white transition"
+          className="mt-4 block text-center px-4 py-2 border-2 border-green-500 font-medium rounded hover:bg-green-500 hover:text-white transition"
         >
           Enquire
         </a>
@@ -64,12 +63,12 @@ const Projects = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-5xl font-sans font-bold text-center py-8 mb-5 text-gray-900 dark:text-white">
-     🚀 Innovative Creations: Showcasing My Work
+      <h2 className="text-5xl font-sans font-bold text-center py-8 mb-5 text-gray-900 dark:text-white !text-gray-900 dark:!text-white">
+        🚀 Innovative Creations: Showcasing My Work
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
         {projects.length === 0 ? (
-          <p className="text-center text-gray-500 dark:text-gray-400">No projects available.</p>
+          <p className="text-center text-gray-900 dark:text-white">No projects available.</p>
         ) : (
           projects.map((project) => <Card key={project._id} project={project} />)
         )}
