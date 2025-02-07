@@ -1,125 +1,81 @@
-"use client"; 
+"use client";
+import React from "react";
+import { FaRegStickyNote, FaComments, FaTasks } from "react-icons/fa";
 
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
-import { useTheme } from '../app/ThemeContext'; 
+const Projects = () => {
+  const projects = [
+    {
+      _id: "1",
+      title: "Notes Making App",
+      description: "A simple and efficient notes-taking application to organize your thoughts, tasks, and ideas.",
+      imageUrl: "/notesapp.jpg",
+      likes: 10,
+      githubLink: "https://github.com/yourusername/notes-app",
+      icon: <FaRegStickyNote className="text-blue-500 text-4xl" />, 
+    },
+    {
+      _id: "2",
+      title: "Chat Application",
+      description: "A real-time chat application with instant messaging, group chats, and media sharing features.",
+      imageUrl: "/chatimg.png",
+      likes: 15,
+      githubLink: "https://github.com/yourusername/chat-app",
+      icon: <FaComments className="text-green-500 text-4xl" />, 
+    },
+    {
+      _id: "3",
+      title: "Project Management System",
+      description: "A full-featured project management tool to track progress, manage teams, and enhance productivity.",
+      imageUrl: "/projectimg.jpg",
+      likes: 20,
+      githubLink: "https://github.com/yourusername/project-management-system",
+      icon: <FaTasks className="text-red-500 text-4xl" />, 
+    },
+  ];
 
-const cardData = [
-  {
-    title: "Showcase My Web Development Skills",
-    description: "Present a collection of diverse web development projects to demonstrate my proficiency in technologies like React, Tailwind, and Node.js.",
-    delay: 0,
-  },
-  {
-    title: "Highlight Professional Experience",
-    description: "Detail my practical experience, including internships and roles like Associate Tech Head at CSI, to showcase my growth and hands-on involvement.",
-    delay: 0.3,
-  },
-  {
-    title: "Demonstrate Full-Stack Capabilities",
-    description: "Provide examples of full-stack projects, such as building RESTful APIs, working with MongoDB, and developing interactive user interfaces.",
-    delay: 0.6,
-  },
-  {
-    title: "Illustrate Problem-Solving Approach",
-    description: "Showcase projects and case studies where I tackled technical challenges, focusing on algorithmic efficiency and design principles.",
-    delay: 0.9,
-  },
-  {
-    title: "Build Connections with Potential Employers",
-    description: "Create a platform to share my work, connect with industry professionals, and present myself as a valuable candidate for future opportunities.",
-    delay: 1.2,
-  },
-];
-
-const Objective = () => {
-  const [key, setKey] = useState(0); 
-  const router = useRouter(); 
-  const { theme } = useTheme(); 
-
-  useEffect(() => {
-    const handleRouteChange = () => {
-      setKey((prevKey) => prevKey + 1); 
-    };
-
-    window.addEventListener('popstate', handleRouteChange);
-
-    return () => {
-      window.removeEventListener('popstate', handleRouteChange); 
-    };
-  }, [router]);
-
-  const pageVariants = {
-    initial: { opacity: 0, y: -50 },
-    in: { opacity: 1, y: 0 },
-    out: { opacity: 0, y: 50 },
-  };
-
-  const pageTransition = {
-    type: "spring",
-    stiffness: 50,
-    damping: 20,
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
-
-  // Reusable Card component
-  const Card = ({ title, description, delay }) => (
-    <motion.div
-      className={`max-w-sm mx-auto rounded-lg shadow-xl overflow-hidden my-2 ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'}`}
-      initial="hidden"
-      animate="visible"
-      variants={cardVariants}
-      transition={{ duration: 0.6, delay }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      role="button" 
-      tabIndex={0} 
-      onClick={() => handleCardClick(title)} 
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCardClick(title); }} 
-    >
-      <div className="p-4">
-        <h2 className="text-lg font-semibold bg-red-100  text-blue-950 px-2">{title}</h2>
-        <p className="mt-2">⭐{description}</p>
-      </div>
-    </motion.div>
+  // Individual Project Card Component
+  const Card = ({ project }) => (
+    <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
+      <div className="flex justify-center">{project.icon}</div> {/* Icon above title */}
+      <h3 className="text-xl font-semibold text-gray-900 dark:text-white text-center mt-4">
+        {project.title}
+      </h3>
+      {project.imageUrl && (
+        <img
+          src={project.imageUrl}
+          alt={project.title}
+          className="w-full h-48 object-cover rounded-lg my-4"
+        />
+      )}
+      <p className="text-gray-900 dark:text-white my-2">{project.description}</p>
+      <p className="text-gray-700 dark:text-gray-300 text-center">⭐ {project.likes} Likes</p>
+      {project.githubLink && (
+        <a
+          href="/#Contact"
+          rel="noopener noreferrer"
+          className="mt-4 block text-center px-4 py-2 border-2 border-green-500 font-medium rounded hover:bg-green-500 hover:text-white transition"
+        >
+          Enquire
+        </a>
+      )}
+    </div>
   );
 
-  const handleCardClick = (title) => {
-    console.log(title);
-  };
-
   return (
-    <motion.div
-      key={key}
-      className={`objective min-h-screen p-4 ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-800'}`}
-      initial="initial"
-      animate="in"
-      exit="out"
-      variants={pageVariants}
-      transition={pageTransition}
-    >
-      {/* Objective heading */}
-      <h2 className={`text-5xl font-sans font-bold text-center py-8 mb-5 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}> 🎯 Mission in Focus: My Path to Success</h2>
+    <div className="p-6">
+      <h2 className={`text-5xl font-sans font-bold text-center py-8 mb-5 text-gray-900 dark:text-white`}>
+        🎯 Mission in Focus: My Path to Success
+      </h2>
 
-
-      {/* Grid for cards */}
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {cardData.map((card, index) => (
-          <Card
-            key={index}
-            title={card.title}
-            description={card.description}
-            delay={card.delay}
-          />
-        ))}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
+        {projects.length === 0 ? (
+          <p className="text-center text-gray-900 dark:text-white">No projects available.</p>
+        ) : (
+          projects.map((project) => <Card key={project._id} project={project} />)
+        )}
       </div>
-    </motion.div>
+    </div>
   );
 };
 
-export default Objective;
+export default Projects;

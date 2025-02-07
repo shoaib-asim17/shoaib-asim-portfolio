@@ -25,14 +25,14 @@ const AboutMe = () => {
           {/* Profile Info */}
           <div>
             <div className="header mb-16">
-              <p className={`text-lg font-serif ${isDark ? "text-gray-100" : "text-gray-900"}`}>
+              <p className={` font-serif font-extrabold text-4xl ${isDark ? "text-gray-100" : "text-gray-900"}`}>
                 Mohammed Shoaib Asim
               </p>
-              <p className={`text-md font-normal ${isDark ? "text-gray-400" : "text-gray-800"}`}>
+              <p className={`text-md font-serif ${isDark ? "text-gray-400" : "text-gray-800"}`}>
                 Student at Muffakham Jah College Of Engineering And Technology.
               </p>
-              <h2 className={`text-md font-normal ${isDark ? "text-gray-400" : "text-gray-800"}`}>
-                MERN Full-Stack Web Developer
+              <h2 className={`text-md font-serif font-light ${isDark ? "text-gray-400" : "text-gray-800"}`}>
+                Full Stack Developer | Hack Revolution 2025 Winner | CSE Undergraduate
               </h2>
 
               {/* Social Media Icons */}

@@ -63,9 +63,10 @@ const Projects = () => {
 
   return (
     <div className="p-6">
-      <h2 className="text-5xl font-sans font-bold text-center py-8 mb-5 text-gray-900 dark:text-white !text-gray-900 dark:!text-white">
+      <h2 className="text-5xl font-sans font-bold text-center py-8 mb-5 text-gray-900 dark:text-white">
         🚀 Innovative Creations: Showcasing My Work
       </h2>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">
         {projects.length === 0 ? (
           <p className="text-center text-gray-900 dark:text-white">No projects available.</p>
