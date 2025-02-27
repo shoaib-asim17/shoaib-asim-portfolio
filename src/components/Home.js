@@ -60,7 +60,7 @@ const Home = () => {
             </div>
 
             <div className="buttons flex flex-wrap justify-center md:justify-start mt-8">
-              <a href="/Resume2025.pdf" target="_blank" className="w-full sm:w-auto">
+              <a href="/RDxCC.pdf" target="_blank" className="w-full sm:w-auto">
                 <button className="bg-red-600 text-white font-mono py-2 px-4 mt-2 mx-3 rounded hover:bg-blue-700 transition duration-300">
                   Resume
                 </button>
