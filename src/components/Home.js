@@ -18,7 +18,7 @@ const Home = () => {
     <div
       className={`home my-12 min-h-screen p-5 rounded-lg relative transition duration-300 ease-in-out overflow-hidden ${
         isDark
-          ? "bg-gray-900 text-white shadow-lg backdrop-blur-sm"
+          ? "bg-zinc-950 text-white shadow-lg backdrop-blur-sm"
           : "text-gray-800 shadow-md bg-gray-50"
       }`}
     >

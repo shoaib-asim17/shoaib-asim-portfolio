@@ -3,7 +3,7 @@ import { FaLinkedin, FaTwitter, FaGithub, FaInstagram, FaFacebook } from 'react-
 
 const Footer = ({ isDark }) => {
   return (
-    <div className={`footer bg-blue-950 text-white`}>
+    <div className={`footer bg-zinc-950 text-white`}>
       <div className="content mx-auto py-12 px-4">
         <div className="flex justify-center items-center">
           <p className="text-zinc-400 text-sm">

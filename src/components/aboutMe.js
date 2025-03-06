@@ -10,7 +10,7 @@ const AboutMe = () => {
   const isDark = theme === "dark";
 
   return (
-    <main className={`px-4 lg:px-8 pt-16 ${isDark ? "bg-gray-900 text-gray-100" : "text-gray-800"}`}>
+    <main className={`px-4 lg:px-8 pt-16 rounded-3xl border border-dashed border-red-600 ${isDark ? "bg-zinc-900 text-gray-100" : "text-gray-800"}`}>
       <section className="py-6 lg:py-14">
         <div className="container flex flex-col lg:flex-row items-start justify-start">
           {/* Profile Image */}

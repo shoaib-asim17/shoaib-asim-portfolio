@@ -1,6 +1,7 @@
 "use client";
 import React from "react";
 import { FaRegStickyNote, FaComments, FaTasks } from "react-icons/fa";
+import { useTheme } from '../app/ThemeContext'; 
 
 const projects = [
   {
@@ -33,37 +34,46 @@ const projects = [
 ];
 
 // Individual Project Card Component
-const Card = ({ project }) => (
-  <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300">
-    <div className="flex justify-center">{project.icon}</div>
-    <h3 className="text-xl font-semibold text-gray-900 dark:text-white text-center mt-4">
-      {project.title}
-    </h3>
-    {project.imageUrl && (
-      <img
-        src={project.imageUrl}
-        alt={project.title}
-        className="w-full h-48 object-cover rounded-lg my-4"
-      />
-    )}
-    <p className="text-gray-900 dark:text-white my-2">{project.description}</p>
-    <p className="text-gray-700 dark:text-gray-300 text-center">⭐ {project.likes} Likes</p>
-    {project.githubLink && (
-      <a
-        href="/#Contact"
-        rel="noopener noreferrer"
-        className="mt-4 block text-center px-4 py-2 border-2 border-green-500 font-medium rounded hover:bg-green-500 hover:text-white transition"
-      >
-        Enquire
-      </a>
-    )}
-  </div>
-);
+const Card = ({ project }) => {
+  const { theme } = useTheme(); // Corrected placement of useTheme()
+
+  return (
+    <div
+      className={`p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border border-gray-300 dark:border-gray-700 
+        ${theme === 'dark' ? 'bg-gradient-to-r from-zinc-950 to-zinc-600  text-white' : 'bg-white'}`}
+    >
+      <div className="flex justify-center">{project.icon}</div>
+      <h3 className="text-xl font-semibold  text-center mt-4">
+        {project.title}
+      </h3>
+      {project.imageUrl && (
+        <img
+          src={project.imageUrl}
+          alt={project.title}
+          className="w-full h-48 object-cover rounded-lg my-4"
+        />
+      )}
+      <p className=" my-2">{project.description}</p>
+      <p className=" text-center">⭐ {project.likes} Likes</p>
+      {project.githubLink && (
+        <a
+          href="/#Contact"
+          rel="noopener noreferrer"
+          className="mt-4 block text-center px-4 py-2 border-2 border-green-500 font-medium rounded hover:bg-green-500 hover:text-white transition"
+        >
+          Enquire
+        </a>
+      )}
+    </div>
+  );
+};
 
 const Projects = () => {
+  const { theme } = useTheme(); // Ensure useTheme is properly used here
+
   return (
-    <div className="pb-6 bg-gray-50 dark:bg-gray-900">
-      <h2 className="text-5xl font-sans font-bold text-center py-8 mb-5 text-gray-900 dark:text-white">
+    <div className={`pb-6 ${theme === 'dark' ? 'bg-black' : 'bg-gray-50'}`}>
+      <h2 className={`text-5xl font-sans font-bold text-center py-8 mb-5 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
         🚀 Innovative Creations: Showcasing My Work
       </h2>
 

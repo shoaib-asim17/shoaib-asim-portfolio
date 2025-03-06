@@ -70,7 +70,7 @@ const Objective = () => {
   // Reusable Card component
   const Card = ({ title, description, delay }) => (
     <motion.div
-      className={`max-w-sm mx-auto rounded-lg shadow-xl overflow-hidden my-2 ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white text-gray-800'}`}
+      className={`max-w-sm mx-auto rounded-2xl shadow-xl border border-gray-400  overflow-hidden my-2 ${theme === 'dark' ? 'bg-gradient-to-r from-gray-800 to-slate-500 text-white' : 'bg-white text-gray-800'}`}
       initial="hidden"
       animate="visible"
       variants={cardVariants}
@@ -96,7 +96,7 @@ const Objective = () => {
   return (
     <motion.div
       key={key}
-      className={`objective min-h-screen p-4 ${theme === 'dark' ? 'bg-gray-900 text-white' : 'bg-gray-50 text-gray-800'}`}
+      className={`objective min-h-screen p-4 ${theme === 'dark' ? 'bg-black text-white' : 'bg-gray-50 text-gray-800'}`}
       initial="initial"
       animate="in"
       exit="out"
