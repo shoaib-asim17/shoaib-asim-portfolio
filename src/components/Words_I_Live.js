@@ -15,7 +15,7 @@ const QuoteCard = ({ quote, photo, name, isRight, theme }) => {
       className={`max-w-sm rounded-lg overflow-hidden m-4 
       ${isRight ? 'ml-auto lg:mr-auto' : 'mr-auto lg:ml-auto'} 
       lg:flex lg:justify-${isRight ? 'end' : 'start'} 
-      ${theme === 'dark' ? 'bg-gray-800 text-white' : 'bg-white shadow-lg  text-gray-800'}`}
+      ${theme === 'dark' ? 'bg-gradient-to-r from-slate-900 to-red-600 text-white' : 'bg-white shadow-lg  text-gray-800'}`}
       style={whiteShadow} // Apply the inline white shadow style
     >
       <div className="flex items-center p-6">
@@ -25,8 +25,8 @@ const QuoteCard = ({ quote, photo, name, isRight, theme }) => {
           alt={name}
         />
         <div>
-          <h2 className={`text-xl font-semibold`}>{name}</h2>
-          <p className={`text-gray-600 ${theme === 'dark' ? 'text-gray-300' : 'text-gray-200'}`}>{quote}</p>
+          <h2 className={`text-2xl font-serif text-teal-600`}>{name}</h2>
+          <p className={` ${theme === 'dark' ? 'text-gray-100' : 'text-gray-600'}`}>{quote}</p>
         </div>
       </div>
     </div>
@@ -62,7 +62,7 @@ export default function QuotesSection() {
   return (
     <div className={` ${theme === 'dark' ? '' : 'bg-gray-50'}`}>
      {/* <h1 className={`text-3xl font-bold text-center mb-8 ${theme === 'dark' ? 'text-white' : 'text-gray-800'}`}>Words I Live By</h1> */}
-     <h2 className={`text-5xl font-sans font-bold text-center py-8 mb-5 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}> ✨ Words That Inspire: A Collection of Powerful Quotes</h2>
+     <h2 className={`text-5xl font-sans font-bold text-center py-8 mb-5 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}> ✨ Words That Inspire</h2>
 
       <div className="flex flex-wrap justify-center ">
         {myQuotes.map((item, index) => (
