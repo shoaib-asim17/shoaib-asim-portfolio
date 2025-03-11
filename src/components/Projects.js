@@ -73,8 +73,8 @@ const Projects = () => {
 
   return (
     <div className={`pb-6 ${theme === 'dark' ? 'bg-black' : 'bg-gray-50'}`}>
-      <h2 className={`text-5xl font-sans font-bold text-center py-8 mb-5 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>
-        🚀 Innovative Creations: Showcasing My Work
+      <h2 className={`text-5xl font-medium text-center py-8 mb-5 ${theme === 'dark' ? 'text-white' : 'bg-gradient-to-r from-zinc-900 to-teal-400 bg-clip-text text-transparent'}`}>
+         Innovative Creations
       </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6">

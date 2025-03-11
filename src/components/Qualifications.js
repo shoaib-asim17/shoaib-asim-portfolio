@@ -68,10 +68,10 @@ export function Qualifications() {
   const { theme } = useTheme(); // Get the current theme from context
   
   return (
-    <div className={`flex flex-col items-center w-full max-w-full mx-auto p-6 ${theme === 'dark' ? 'bg-gray-800 bg-opacity-10 text-gray-100' : 'bg-gray-50'}`}>
-<h2 className={`text-5xl font-sans font-bold text-center py-8 mb-5 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}>🎓 Credentials That Speak</h2>
+    <div className={`flex flex-col items-center w-full max-w-full mx-auto p-6 ${theme === 'dark' ? 'bg-black bg-opacity-10 text-gray-100' : 'bg-gray-50'}`}>
+<h2 className={`text-5xl  font-medium text-center py-8 mb-5 ${theme === 'dark' ? 'text-white' : 'bg-gradient-to-r from-zinc-900 to-teal-400 bg-clip-text text-transparent'}`}> Credentials That Speak</h2>
             
-      <div className={`px-4 py-6 rounded-lg ${theme === 'dark' ? 'bg-zinc-950' : ''}`} style={{ boxShadow: '0 4px 15px rgba(255, 255, 255, 0.5)' }}>
+      <div className={`px-4 py-6 rounded-lg ${theme === 'dark' ? 'bg-zinc-950' : ''}`} >
         <ol className="relative border-l border-gray-200 dark:border-gray-700">
           {qualificationsData.map((qualification, index) => (
             <QualificationItem

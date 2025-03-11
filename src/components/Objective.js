@@ -70,7 +70,7 @@ const Objective = () => {
   // Reusable Card component
   const Card = ({ title, description, delay }) => (
     <motion.div
-      className={`max-w-sm mx-auto rounded-2xl shadow-xl border border-gray-400  overflow-hidden my-2 ${theme === 'dark' ? 'bg-gradient-to-r from-gray-800 to-slate-500 text-white' : 'bg-white text-gray-800'}`}
+      className={`max-w-sm mx-auto rounded-2xl shadow-xl border border-gray-400  overflow-hidden my-2 ${theme === 'dark' ? 'bg-gradient-to-r from-zinc-900 to-teal-400' : 'bg-white text-gray-800'}`}
       initial="hidden"
       animate="visible"
       variants={cardVariants}
@@ -104,7 +104,7 @@ const Objective = () => {
       transition={pageTransition}
     >
       {/* Objective heading */}
-      <h2 className={`text-5xl font-sans font-bold text-center py-8 mb-5 ${theme === 'dark' ? 'text-white' : 'text-gray-900'}`}> 🎯 Mission in Focus: My Path to Success</h2>
+      <h2 className={`text-5xl font-medium text-center py-8 mb-5 ${theme === 'dark' ? 'text-white' : 'bg-gradient-to-r from-zinc-900 to-teal-400 bg-clip-text text-transparent'}`}>  My Path to Success</h2>
 
 
       {/* Grid for cards */}

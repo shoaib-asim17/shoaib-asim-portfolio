@@ -10,7 +10,7 @@ const AboutMe = () => {
   const isDark = theme === "dark";
 
   return (
-    <main className={`px-4 lg:px-8 pt-16 rounded-3xl border border-dashed border-red-600 ${isDark ? "bg-zinc-900 text-gray-100" : "text-gray-800"}`}>
+    <main className={`px-4 lg:px-8 pt-16 rounded-3xl border border-collapse border-teal-500 ${isDark ? "bg-black text-gray-100" : "text-gray-800"}`}>
       <section className="py-6 lg:py-14">
         <div className="container flex flex-col lg:flex-row items-start justify-start">
           {/* Profile Image */}
@@ -61,7 +61,7 @@ const AboutMe = () => {
             </div>
 
             {/* About Section */}
-            <div className="bg-slate-100 dark:bg-gray-800 py-4 px-4 rounded-md text-gray-800 dark:text-gray-300">
+            <div className={`${isDark ? "text-white" : "text-black"}`}>
               <p>
                 I am a passionate web developer specializing in the MERN stack (MongoDB, Express.js, React, and Node.js). Currently pursuing my Bachelor's degree in Computer Science Engineering at Muffakham Jah College of Engineering and Technology, I am constantly learning new technologies to enhance my skills and contribute to innovative projects.
               </p>
