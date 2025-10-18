@@ -1,14 +1,17 @@
 "use client";
 import React from 'react';
-import { useTheme } from '../app/ThemeContext';
 
 const qualificationsData = [
+
+  {
+    date: 'Present',
+    title: 'Software Developer at Data Panther',
+    description: 'Contributing to the development of scalable web applications and AI-powered solutions using MERN stack and Python Full Stack technologies.',
+  },
   {
     date: '2025',
     title: 'Computer Science Engineering',
     description: 'Mastering web development, data structures, algorithms, and software engineering principles.',
-    linkText: 'Learn more',
-    linkHref: '#',
   },
   {
     date: '2024',
@@ -29,13 +32,12 @@ const qualificationsData = [
 
 // Qualification entry function
 function QualificationItem({ date, title, description, linkText, linkHref }) {
-  const { theme } = useTheme();
   
   return (
     <li className="mb-10 ml-4">
       <div className="absolute w-3 h-3 bg-gray-700 rounded-full mt-1.5 -left-1.5 border border-white dark:border-gray-900 dark:bg-gray-700"></div>
       <time className="mb-1 text-sm font-normal leading-none text-white bg-slate-500 px-2 py-1 rounded-sm dark:text-gray-500">{date}</time>
-      <h3 className={`text-lg font-semibold ${theme === 'dark' ? 'text-gray-100' : 'text-gray-900'}`}>{title}</h3>
+      <h3 className="text-lg font-semibold text-gray-100">{title}</h3>
       <p className="text-base font-normal text-gray-500 dark:text-gray-100">{description}</p>
       {linkText && linkHref && (
         <a
@@ -65,13 +67,12 @@ function QualificationItem({ date, title, description, linkText, linkHref }) {
 }
 
 export function Qualifications() {
-  const { theme } = useTheme(); // Get the current theme from context
   
   return (
-    <div className={`flex flex-col items-center w-full max-w-full mx-auto p-6 ${theme === 'dark' ? 'bg-black bg-opacity-10 text-gray-100' : 'bg-gray-50'}`}>
-<h2 className={`text-5xl  font-medium text-center py-8 mb-5 ${theme === 'dark' ? 'text-white' : 'bg-gradient-to-r from-zinc-900 to-teal-400 bg-clip-text text-transparent'}`}> Credentials That Speak</h2>
+    <div className="flex flex-col items-center w-full max-w-full mx-auto p-6 bg-black bg-opacity-10 text-gray-100">
+<h2 className="text-5xl font-medium text-center py-8 mb-5 text-white">Credentials That Speak</h2>
             
-      <div className={`px-4 py-6 rounded-lg ${theme === 'dark' ? 'bg-zinc-950' : ''}`} >
+      <div className="px-4 py-6 rounded-lg bg-zinc-950">
         <ol className="relative border-l border-gray-200 dark:border-gray-700">
           {qualificationsData.map((qualification, index) => (
             <QualificationItem

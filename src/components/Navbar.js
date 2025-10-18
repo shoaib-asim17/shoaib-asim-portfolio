@@ -1,180 +1,207 @@
 "use client"
-import React, { useState } from 'react';
-import { Bars3Icon, XMarkIcon, SunIcon, MoonIcon } from '@heroicons/react/24/outline';
-import { useTheme } from '../app/ThemeContext';
-import Link from 'next/link'; // Import Link from next/link
-// import { HiHome } from "react-icons/hi2";
-import { HiHome, HiUser, HiBriefcase, HiMail ,  HiBookOpen } from "react-icons/hi";
+import React, { useState, useEffect } from 'react';
+import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import { HiHome, HiUser, HiBriefcase, HiMail, HiBookOpen } from "react-icons/hi";
+import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
-  const [isOpen, setIsOpen, ] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
-  // Access theme and toggleTheme from the useTheme hook
-  const { theme, toggleTheme } = useTheme();
+  // Handle scroll effect with throttling for better performance
+  useEffect(() => {
+    let ticking = false;
+    
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 50);
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Smooth scroll function
+  const smoothScrollTo = (elementId) => {
+    const element = document.getElementById(elementId);
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+    setIsOpen(false);
+  };
 
   return (
-    <nav className={`px-2 py-1 w-full fixed top-0 left-0 z-50 shadow-md backdrop-blur-lg ${theme === 'dark' ? 'bg-gray-900 bg-opacity-10' : 'bg-gray-50 bg-opacity-70'}`}>
-      <div className="container mx-auto flex justify-between items-center">
-        <a href="/#About">
-          <div className={`text-lg font-bold flex items-center mx-2 rounded-md p-2 hover:shadow-md ${theme === 'dark' ? ' text-gray-900' : ' text-white'}`}>
-            <img
-              src={"./images/shoaib asim.png"}
-              alt="zorawar"
-              className="w-20 rounded-full"
-            />
-            {/* <div className="nameandrole flex flex-col px-2">
-              <span className="ml-2 text-lg font-bold">Mohammed Shoaib Asim</span>
-              <p className="text-pink-300 text-sm font-serif px-2 hover:text-yellow-400 ">Full Stack Developer</p>
-            </div> */}
+    <motion.nav 
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${
+        scrolled 
+          ? 'bg-dark-bg-secondary/90 backdrop-blur-xl border-b border-glass-border' 
+          : 'bg-transparent'
+      }`}
+    >
+      <div className="container mx-auto px-4 py-4">
+        <div className="flex justify-between items-center">
+          {/* Logo */}
+          <motion.div 
+            whileHover={{ scale: 1.05 }}
+            className="flex items-center space-x-3"
+          >
+            <div className="relative">
+              <img
+                src="./images/shoaib asim.png"
+                alt="Shoaib Asim"
+                className="w-12 h-12 rounded-full"
+              />
+              <div className="absolute inset-0 rounded-full bg-gradient-primary opacity-20 animate-pulse"></div>
           </div>
-        </a>
+           
+          </motion.div>
 
-        <div className="hidden md:flex space-x-10">
+          {/* Desktop Navigation */}
+          <div className="hidden md:flex items-center space-x-8">
+            {[
+              { id: 'Home', icon: HiHome, label: 'Home' },
+              { id: 'About', icon: HiUser, label: 'About' },
+              { id: 'Projects', icon: HiBriefcase, label: 'Projects' },
+              { id: 'Contact', icon: HiMail, label: 'Contact' },
+            ].map((item) => (
+              <motion.button
+                key={item.id}
+                onClick={() => smoothScrollTo(item.id)}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center space-x-2 text-text-secondary hover:text-neon-cyan transition-colors duration-300 group"
+              >
+                <item.icon className="w-5 h-5 group-hover:text-neon-cyan transition-colors duration-300" />
+                <span className="font-figtree font-medium">{item.label}</span>
+              </motion.button>
+            ))}
 
-                      <a href="/#Home" 
-              className={`flex items-center gap-2 hover:text-white hover:bg-green-600 hover:px-3 py-2 text-lg font-serif rounded-md 
-              ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>
-              <HiHome className="w-5 h-5" />
-              Home
-            </a>
-
-
-            <a href="/#About" className={`flex items-center gap-2 hover:text-white hover:bg-green-600 hover:px-3 py-2 text-lg font-serif rounded-md 
-            ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>
-              <HiUser className="w-5 h-5" />
-              About
-            </a>
-
-            <a href="/#Projects" className={`flex items-center gap-2 hover:text-white hover:bg-green-600 hover:px-3 py-2 text-lg font-serif rounded-md 
-            ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>
-              <HiBriefcase className="w-5 h-5" />
-              Projects
-            </a>
-
-            <a href="/#Contact" className={`flex items-center gap-2 hover:text-white hover:bg-green-600 hover:px-3 py-2 text-lg font-serif rounded-md 
-            ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>
-              <HiMail className="w-5 h-5" />
-              Contact
-            </a>
-
-
-<Link href="/dsa" className={`flex items-center gap-2 hover:text-white hover:bg-green-600 hover:px-3 py-2 text-lg font-serif rounded-md 
-${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}>
-   <HiBookOpen className="w-5 h-5" />
-   Learn
+            <Link href="/dsa">
+              <motion.button
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="flex items-center space-x-2 text-text-secondary hover:text-neon-cyan transition-colors duration-300 group"
+              >
+                <HiBookOpen className="w-5 h-5 group-hover:text-neon-cyan transition-colors duration-300" />
+                <span className="font-figtree font-medium">Learn</span>
+              </motion.button>
 </Link>
 
-
+            {/* More Dropdown */}
           <div className="relative">
-            <button
+              <motion.button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className={` hover:text-white hover:bg-green-600 hover:px-3 py-2 rounded-md ${theme === 'dark' ? 'text-white' : 'text-blue-950'}`}
-              aria-expanded={isDropdownOpen}
+                whileHover={{ y: -2 }}
+                whileTap={{ scale: 0.95 }}
+                className="text-text-secondary hover:text-neon-cyan transition-colors duration-300 font-figtree font-medium"
             >
               More
-            </button>
+              </motion.button>
+              <AnimatePresence>
             {isDropdownOpen && (
-              <div className="absolute right-0 bg-pink-950 backdrop-blur-3xl bg-opacity text-white rounded shadow-lg mt-2 z-10">
-                <a href="/#Words_I_Live" className="block px-4 py-2 hover:bg-pink-100 hover:text-pink-950">Quotes</a>
-                <a href="/#Qualifications" className="block px-4 py-2 hover:bg-pink-100 hover:text-pink-950">Qualifications</a>
-                <a href="/#Objective" className="block px-4 py-2 hover:bg-pink-100 hover:text-pink-950">Objective</a>
-              </div>
-            )}
-          </div>
-
-          {/* Theme Toggle Button with Icons */}
+                  <motion.div
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -10 }}
+                    className="absolute right-0 mt-2 w-48 bg-dark-bg-secondary/95 backdrop-blur-xl border border-glass-border rounded-lg shadow-glow-primary overflow-hidden"
+                  >
+                    {[
+                      { id: 'Words_I_Live', label: 'Quotes' },
+                      { id: 'Qualifications', label: 'Qualifications' },
+                      { id: 'Objective', label: 'Objective' },
+                    ].map((item) => (
           <button
-            onClick={toggleTheme}
-            className={`flex items-center px-4 py-2 rounded-md ${theme === 'dark' ? 'text-white' : 'text-dark'} `}
-          >
-            {theme === 'light' ? (
-              <>
-                <MoonIcon className="w-5 h-5 mr-2" />
-              </>
-            ) : (
-              <>
-                <SunIcon className="w-5 h-5 mr-2" />
-              </>
-            )}
-          </button>
+                        key={item.id}
+                        onClick={() => {
+                          smoothScrollTo(item.id);
+                          setIsDropdownOpen(false);
+                        }}
+                        className="block w-full text-left px-4 py-3 text-text-secondary hover:text-neon-cyan hover:bg-dark-bg-tertiary/50 transition-colors duration-300"
+                      >
+                        {item.label}
+            </button>
+                    ))}
+                  </motion.div>
+                )}
+              </AnimatePresence>
+              </div>
         </div>
 
         {/* Mobile Menu Button */}
-        <div className="md:hidden">
-          <button onClick={() => setIsOpen(!isOpen)} className="text-gray-700">
+          <motion.button
+            onClick={() => setIsOpen(!isOpen)}
+            whileTap={{ scale: 0.95 }}
+            className="md:hidden text-text-primary hover:text-neon-cyan transition-colors duration-300"
+          >
             {isOpen ? <XMarkIcon className="w-6 h-6" /> : <Bars3Icon className="w-6 h-6" />}
-          </button>
-        </div>
+          </motion.button>
       </div>
 
       {/* Mobile Menu */}
+        <AnimatePresence>
       {isOpen && (
-        <div className={`md:hidden ${theme === 'dark' ? 'bg-gray-800' : 'bg-gray-700'}`}>
-          {/* <a href="/#Home" className="block px-4 py-2 text-white">Home</a>
-          <HiHome /> */}
-          <a href="/#Home" className="block px-4 py-2 text-white flex items-center">
-  <HiHome className="w-5 h-5 mr-2" />
-  Home
-</a>
-
-
-<a href="/#About" className="flex items-center gap-2 px-4 py-2 text-white hover:bg-gray-700 rounded-md">
-   <HiUser className="w-5 h-5" />
-   About
-</a>
-
-<a href="/#Projects" className="flex items-center gap-2 px-4 py-2 text-white hover:bg-gray-700 rounded-md">
-   <HiBriefcase className="w-5 h-5" />
-   Projects
-</a>
-
-<a href="/#Contact" className="flex items-center gap-2 px-4 py-2 text-white hover:bg-gray-700 rounded-md">
-   <HiMail className="w-5 h-5" />
-   Contact
-</a>
-
-<a href="/dsa" className="flex items-center gap-2 px-4 py-2 text-white hover:bg-gray-700 rounded-md">
-   <HiBookOpen className="w-5 h-5" />
-   DSA
-</a>
-
-          <div className="relative">
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="block w-full text-left px-4 py-2 text-white"
-              aria-expanded={isDropdownOpen}
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              className="md:hidden mt-4 bg-dark-bg-secondary/95 backdrop-blur-xl border border-glass-border rounded-lg overflow-hidden"
             >
-              More
+              {[
+                { id: 'Home', icon: HiHome, label: 'Home' },
+                { id: 'About', icon: HiUser, label: 'About' },
+                { id: 'Projects', icon: HiBriefcase, label: 'Projects' },
+                { id: 'Contact', icon: HiMail, label: 'Contact' },
+              ].map((item) => (
+            <button
+                  key={item.id}
+                  onClick={() => smoothScrollTo(item.id)}
+                  className="flex items-center space-x-3 w-full px-4 py-3 text-text-secondary hover:text-neon-cyan hover:bg-dark-bg-tertiary/50 transition-colors duration-300"
+                >
+                  <item.icon className="w-5 h-5" />
+                  <span className="font-figtree font-medium">{item.label}</span>
             </button>
-            {isDropdownOpen && (
-              <div className="absolute left-0 bg-gray-600 text-white rounded shadow-lg mt-2 z-10">
-                <a href="/#Words_I_Live" className="block px-4 py-2 hover:bg-gray-500">Quotes</a>
-                <a href="/#Qualifications" className="block px-4 py-2 hover:bg-gray-500">Qualifications</a>
-                <a href="/#Objective" className="block px-4 py-2 hover:bg-gray-500">Objective</a>
-
+              ))}
+              
+              <Link href="/dsa">
+                <div className="flex items-center space-x-3 w-full px-4 py-3 text-text-secondary hover:text-neon-cyan hover:bg-dark-bg-tertiary/50 transition-colors duration-300">
+                  <HiBookOpen className="w-5 h-5" />
+                  <span className="font-figtree font-medium">Learn</span>
               </div>
-            )}
-          </div>
+              </Link>
 
-          {/* Theme Toggle Button for Mobile */}
+              <div className="border-t border-glass-border">
+                {[
+                  { id: 'Words_I_Live', label: 'Quotes' },
+                  { id: 'Qualifications', label: 'Qualifications' },
+                  { id: 'Objective', label: 'Objective' },
+                ].map((item) => (
           <button
-            onClick={toggleTheme}
-            className={`block w-full text-left px-4 py-2 rounded-md ${theme === 'dark' ? 'bg-gray-950 backdrop-blur-2xl backdrop-brightness-50 text-white' : 'bg-gray-800 text-white'} mt-2`}
-          >
-            {theme === 'light' ? (
-              <>
-                <MoonIcon className="w-5 h-5 mr-2 inline" />
-              </>
-            ) : (
-              <>
-                <SunIcon className="w-5 h-5 mr-2 inline" />
-              </>
-            )}
+                    key={item.id}
+                    onClick={() => smoothScrollTo(item.id)}
+                    className="flex items-center space-x-3 w-full px-4 py-3 text-text-secondary hover:text-neon-cyan hover:bg-dark-bg-tertiary/50 transition-colors duration-300"
+                  >
+                    <span className="font-figtree font-medium">{item.label}</span>
           </button>
+                ))}
         </div>
+            </motion.div>
       )}
-    </nav>
+        </AnimatePresence>
+      </div>
+    </motion.nav>
   );
 };
 

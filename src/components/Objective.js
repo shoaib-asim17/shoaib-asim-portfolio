@@ -1,59 +1,63 @@
-"use client"; 
+"use client";
 
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useRouter } from 'next/navigation';
-import { useTheme } from '../app/ThemeContext'; 
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
+import { useRouter } from "next/navigation";
+import { FaLaptopCode, FaBriefcase, FaServer, FaLightbulb, FaHandshake, FaPython } from "react-icons/fa";
 
 const cardData = [
   {
     title: "Showcase My Web Development Skills",
-    description: "Present a collection of diverse web development projects to demonstrate my proficiency in technologies like React, Tailwind, and Node.js.",
-    delay: 0,
+    description:
+      "Present diverse web projects demonstrating my proficiency in React, Tailwind, and Node.js.",
+    icon: <FaLaptopCode size={28} />,
   },
   {
     title: "Highlight Professional Experience",
-    description: "Detail my practical experience, including internships and roles like Associate Tech Head at CSI, to showcase my growth and hands-on involvement.",
-    delay: 0.3,
+    description:
+      "Detail internships and my role as Associate Tech Head at CSI, showing hands-on leadership.",
+    icon: <FaBriefcase size={28} />,
   },
   {
     title: "Demonstrate Full-Stack Capabilities",
-    description: "Provide examples of full-stack projects, such as building RESTful APIs, working with MongoDB, and developing interactive user interfaces.",
-    delay: 0.6,
+    description:
+      "Show examples of full-stack projects: REST APIs, MongoDB integration, interactive UI.",
+    icon: <FaServer size={28} />,
   },
   {
     title: "Illustrate Problem-Solving Approach",
-    description: "Showcase projects and case studies where I tackled technical challenges, focusing on algorithmic efficiency and design principles.",
-    delay: 0.9,
+    description:
+      "Showcase projects and case studies tackling technical challenges efficiently and creatively.",
+    icon: <FaLightbulb size={28} />,
   },
   {
-    title: "Build Connections with Potential Employers",
-    description: "Create a platform to share my work, connect with industry professionals, and present myself as a valuable candidate for future opportunities.",
-    delay: 1.2,
+    title: "Work on Data Panther Projects",
+    description:
+      "Engaged in real-world projects at Data Panther, integrating MERN stack and Python full-stack solutions, and building LLM-powered applications.",
+    icon: <FaPython size={28} />,
+  },
+  {
+    title: "Build Connections with Employers",
+    description:
+      "Create a platform to share work, network with industry professionals, and highlight my skills.",
+    icon: <FaHandshake size={28} />,
   },
 ];
 
 const Objective = () => {
-  const [key, setKey] = useState(0); 
-  const router = useRouter(); 
-  const { theme } = useTheme(); 
+  const [key, setKey] = useState(0);
+  const router = useRouter();
 
   useEffect(() => {
-    const handleRouteChange = () => {
-      setKey((prevKey) => prevKey + 1); 
-    };
-
-    window.addEventListener('popstate', handleRouteChange);
-
-    return () => {
-      window.removeEventListener('popstate', handleRouteChange); 
-    };
+    const handleRouteChange = () => setKey((prev) => prev + 1);
+    window.addEventListener("popstate", handleRouteChange);
+    return () => window.removeEventListener("popstate", handleRouteChange);
   }, [router]);
 
   const pageVariants = {
-    initial: { opacity: 0, y: -50 },
+    initial: { opacity: 0, y: -30 },
     in: { opacity: 1, y: 0 },
-    out: { opacity: 0, y: 50 },
+    out: { opacity: 0, y: 30 },
   };
 
   const pageTransition = {
@@ -63,59 +67,72 @@ const Objective = () => {
   };
 
   const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0 },
   };
 
-  // Reusable Card component
-  const Card = ({ title, description, delay }) => (
-    <motion.div
-      className={`max-w-sm mx-auto rounded-2xl shadow-xl border border-gray-400  overflow-hidden my-2 ${theme === 'dark' ? 'bg-gradient-to-r from-zinc-900 to-teal-400' : 'bg-white text-gray-800'}`}
-      initial="hidden"
-      animate="visible"
-      variants={cardVariants}
-      transition={{ duration: 0.6, delay }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 0.95 }}
-      role="button" 
-      tabIndex={0} 
-      onClick={() => handleCardClick(title)} 
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleCardClick(title); }} 
-    >
-      <div className="p-4">
-        <h2 className="text-lg font-semibold bg-red-100  text-blue-950 px-2">{title}</h2>
-        <p className="mt-2">⭐{description}</p>
-      </div>
-    </motion.div>
-  );
-
   const handleCardClick = (title) => {
-    console.log(title);
+    console.log(`Clicked: ${title}`);
   };
 
   return (
     <motion.div
       key={key}
-      className={`objective min-h-screen p-4 ${theme === 'dark' ? 'bg-black text-white' : 'bg-gray-50 text-gray-800'}`}
+      className="objective min-h-screen p-8 bg-black text-white"
       initial="initial"
       animate="in"
       exit="out"
       variants={pageVariants}
       transition={pageTransition}
     >
-      {/* Objective heading */}
-      <h2 className={`text-5xl font-medium text-center py-8 mb-5 ${theme === 'dark' ? 'text-white' : 'bg-gradient-to-r from-zinc-900 to-teal-400 bg-clip-text text-transparent'}`}>  My Path to Success</h2>
+      {/* Heading */}
+      <h2 className="text-5xl font-bold text-center mb-12">
+        My Path to Success
+      </h2>
 
-
-      {/* Grid for cards */}
-      <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-        {cardData.map((card, index) => (
-          <Card
+      {/* Grid for first three cards */}
+      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mb-8">
+        {cardData.slice(0, 3).map((card, index) => (
+          <motion.div
             key={index}
-            title={card.title}
-            description={card.description}
-            delay={card.delay}
-          />
+            className="group bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-700 hover:shadow-2xl hover:scale-105 cursor-pointer transition-transform duration-300"
+            initial="hidden"
+            animate="visible"
+            variants={cardVariants}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
+            onClick={() => handleCardClick(card.title)}
+          >
+            <div className="flex items-center space-x-4 mb-4">
+              <div className="text-purple-400">{card.icon}</div>
+              <h3 className="text-xl font-semibold group-hover:text-purple-400 transition-colors">
+                {card.title}
+              </h3>
+            </div>
+            <p className="text-gray-300">{card.description}</p>
+          </motion.div>
+        ))}
+      </div>
+
+      {/* Grid for last three cards */}
+      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+        {cardData.slice(3).map((card, index) => (
+          <motion.div
+            key={index + 3}
+            className="group bg-gray-900 rounded-xl p-6 shadow-lg border border-gray-700 hover:shadow-2xl hover:scale-105 cursor-pointer transition-transform duration-300"
+            initial="hidden"
+            animate="visible"
+            variants={cardVariants}
+            transition={{ duration: 0.6, delay: index * 0.2 }}
+            onClick={() => handleCardClick(card.title)}
+          >
+            <div className="flex items-center space-x-4 mb-4">
+              <div className="text-purple-400">{card.icon}</div>
+              <h3 className="text-xl font-semibold group-hover:text-purple-400 transition-colors">
+                {card.title}
+              </h3>
+            </div>
+            <p className="text-gray-300">{card.description}</p>
+          </motion.div>
         ))}
       </div>
     </motion.div>

@@ -1,7 +1,7 @@
-// import Navbar from "./components/Navbar";
+"use client";
+
 import Contact from "../components/Contact";
 import Home from "../components/Home";
-// import About from "../components/About";
 import { Qualifications } from "../components/Qualifications";
 import Objective from "../components/Objective";
 import Footer from "../components/Footer";
@@ -11,42 +11,38 @@ import AboutMe from "../components/aboutMe";
 
 export default function Main() {
   return (
-    <div className="container mx-auto">
-      
-
-      <div id="Home" className="py-1">
+    <main className="min-h-screen">
+      <div id="Home">
         <Home />
       </div>
 
-     
-      <div id="About" className="py-1">
+      <div id="About">
         <AboutMe/>
       </div>
 
-      <div id= "Objective" className="py-1">
+      <div id="Objective" className="py-1">
         <Objective />
       </div>
 
-      <seciton id="Words_I_Live" className="py-1">
+      <section id="Words_I_Live">
         <Words_I_Live />
-      </seciton>
+      </section>
 
-      <div id="Projects" className="py-1">
+      <div id="Projects">
         <Projects />
       </div>
 
-      <div id="Qualifications" className="py-1">
+      <div id="Qualifications">
         <Qualifications />
       </div>
 
-      <div id="Contact" className="py-1">
+      <div id="Contact">
         <Contact />
       </div>
 
-  
-      <div className="py-1">
+      <div>
         <Footer />
       </div>
-    </div>
+    </main>
   );
 }

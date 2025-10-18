@@ -1,5 +1,5 @@
 // src/app/ThemeContext.js
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext } from 'react';
 
 // Create a ThemeContext
 const ThemeContext = createContext();
@@ -9,16 +9,12 @@ export const useTheme = () => {
   return useContext(ThemeContext);
 };
 
-// Create a ThemeProvider component
+// Create a ThemeProvider component - Always dark theme
 export const ThemeProvider = ({ children }) => {
-  const [theme, setTheme] = useState('light'); // Default theme
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
-  };
+  const theme = 'dark'; // Always dark theme
 
   return (
-    <ThemeContext.Provider value={{ theme, toggleTheme }}>
+    <ThemeContext.Provider value={{ theme }}>
       {children}
     </ThemeContext.Provider>
   );
