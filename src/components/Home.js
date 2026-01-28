@@ -115,7 +115,7 @@ const Home = () => {
               className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start"
             >
               <motion.a
-                href="/RDxCC.pdf"
+                href="/software-developer.pdf"
                 target="_blank"
                 whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0, 255, 255, 0.4)" }}
                 whileTap={{ scale: 0.95 }}
@@ -125,7 +125,7 @@ const Home = () => {
                 <div className="relative flex items-center space-x-2">
                   <FaDownload className="w-5 h-5 text-white" />
                   <span className="text-white">Download Resume</span>
-            </div>
+                </div>
               </motion.a>
 
               <motion.button
@@ -160,8 +160,8 @@ const Home = () => {
                   initial={{ opacity: 0, scale: 0 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.4 + index * 0.1, duration: 0.4 }}
-                  whileHover={{ 
-                    scale: 1.2, 
+                  whileHover={{
+                    scale: 1.2,
                     y: -5,
                     boxShadow: "0 0 20px rgba(0, 255, 255, 0.5)"
                   }}
@@ -184,7 +184,7 @@ const Home = () => {
             <div className="relative">
               {/* Glow Effect */}
               <div className="absolute inset-0 bg-gradient-primary rounded-full blur-2xl opacity-30 animate-pulse" />
-              
+
               {/* Profile Image Container */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -193,12 +193,12 @@ const Home = () => {
                 <div className="absolute inset-0 bg-gradient-primary rounded-full p-1">
                   <div className="w-full h-full bg-dark-bg-secondary rounded-full p-4">
                     <img
-                      src="/images/herosh.jpg"
+                      src="/me.jpeg"
                       alt="Mohammed Shoaib Asim"
                       className="w-full h-full object-cover rounded-full border-2 border-neon-cyan"
                     />
                   </div>
-            </div>
+                </div>
 
                 {/* Floating Elements around image */}
                 <motion.div
@@ -206,7 +206,7 @@ const Home = () => {
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   className="absolute inset-0 border-2 border-dashed border-neon-cyan/30 rounded-full"
                 />
-                
+
                 <motion.div
                   animate={{ rotate: -360 }}
                   transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
@@ -215,8 +215,8 @@ const Home = () => {
               </motion.div>
             </div>
           </motion.div>
-          </div>
         </div>
+      </div>
 
       {/* Scroll Indicator */}
       <motion.div
