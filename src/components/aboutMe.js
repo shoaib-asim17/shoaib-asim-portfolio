@@ -70,7 +70,7 @@ const AboutMe = () => {
             <div className="relative">
               {/* Glow Effect */}
               <div className="absolute inset-0 bg-gradient-primary rounded-full blur-2xl opacity-30 animate-pulse" />
-              
+
               {/* Profile Image Container */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
@@ -79,20 +79,20 @@ const AboutMe = () => {
                 <div className="absolute inset-0 bg-gradient-primary rounded-full p-1">
                   <div className="w-full h-full bg-dark-bg-secondary rounded-full p-4">
                     <img
-              src="/images/herosh.jpg"
-              alt="Mohammed Shoaib Asim"
+                      src="/me.jpeg"
+                      alt="Mohammed Shoaib Asim"
                       className="w-full h-full object-cover rounded-full border-2 border-neon-cyan"
-            />
-          </div>
+                    />
+                  </div>
                 </div>
-                
+
                 {/* Floating Elements around image */}
                 <motion.div
                   animate={{ rotate: 360 }}
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   className="absolute inset-0 border-2 border-dashed border-neon-cyan/30 rounded-full"
                 />
-                
+
                 <motion.div
                   animate={{ rotate: -360 }}
                   transition={{ duration: 15, repeat: Infinity, ease: "linear" }}
@@ -121,13 +121,13 @@ const AboutMe = () => {
                 className="mb-6"
               >
                 <h3 className="text-3xl lg:text-4xl font-bold text-text-primary mb-2">
-                Mohammed Shoaib Asim
+                  Mohammed Shoaib Asim
                 </h3>
                 <p className="text-text-secondary text-lg mb-2">
-GenAI | Python | Software Developer @ Data Panther                </p>
+                  GenAI | Python | Software Developer @ Data Panther                </p>
                 <p className="text-neon-cyan font-medium text-lg">
-  Full Stack Developer | AI & Web Solutions | Innovative Problem Solver
-</p>
+                  Full Stack Developer | AI & Web Solutions | Innovative Problem Solver
+                </p>
               </motion.div>
 
               {/* About Text */}
@@ -139,16 +139,16 @@ GenAI | Python | Software Developer @ Data Panther                </p>
                 className="mb-8"
               >
                 <p className="text-text-tertiary text-lg leading-relaxed">
-  I am a Software Developer Intern at <span className="font-semibold text-neon-cyan">Data Panther</span>, 
-  where I contribute to building scalable web applications and AI-powered solutions. 
-  My work spans the MERN stack, Python Full Stack development, and integrating Large Language Models (LLMs) 
-  into practical applications to enhance automation and intelligence. I am passionate about developing innovative 
-  software solutions that solve real-world problems and continuously expanding my technical expertise.
-</p>
+                  I am a Software Developer Intern at <span className="font-semibold text-neon-cyan">Data Panther</span>,
+                  where I contribute to building scalable web applications and AI-powered solutions.
+                  My work spans the MERN stack, Python Full Stack development, and integrating Large Language Models (LLMs)
+                  into practical applications to enhance automation and intelligence. I am passionate about developing innovative
+                  software solutions that solve real-world problems and continuously expanding my technical expertise.
+                </p>
 
               </motion.div>
 
-            {/* Skills Section */}
+              {/* Skills Section */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -160,8 +160,8 @@ GenAI | Python | Software Developer @ Data Panther                </p>
                   Core Skills
                 </h4>
                 <div className="bg-dark-bg-secondary/50 rounded-xl p-4 border border-glass-border">
-              <HeaderTags />
-            </div>
+                  <HeaderTags />
+                </div>
               </motion.div>
 
               {/* Social Links */}
@@ -185,8 +185,8 @@ GenAI | Python | Software Developer @ Data Panther                </p>
                       whileInView={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 1 + index * 0.1, duration: 0.4 }}
                       viewport={{ once: true }}
-                      whileHover={{ 
-                        scale: 1.2, 
+                      whileHover={{
+                        scale: 1.2,
                         y: -5,
                         boxShadow: "0 0 20px rgba(0, 255, 255, 0.5)"
                       }}
@@ -239,9 +239,9 @@ GenAI | Python | Software Developer @ Data Panther                </p>
               </motion.div>
             </div>
           </motion.div>
-          </div>
         </div>
-      </section>
+      </div>
+    </section>
   );
 };
 

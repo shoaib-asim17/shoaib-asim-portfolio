@@ -5,7 +5,7 @@ import Home from "../components/Home";
 import { Qualifications } from "../components/Qualifications";
 import Objective from "../components/Objective";
 import Footer from "../components/Footer";
-import Projects from "../components/Projects";
+import ProjectsSection from "../components/ProjectsRevamp/ProjectsSection";
 import Words_I_Live from "../components/Words_I_Live";
 import AboutMe from "../components/aboutMe";
 
@@ -17,7 +17,7 @@ export default function Main() {
       </div>
 
       <div id="About">
-        <AboutMe/>
+        <AboutMe />
       </div>
 
       <div id="Objective" className="py-1">
@@ -29,7 +29,7 @@ export default function Main() {
       </section>
 
       <div id="Projects">
-        <Projects />
+        <ProjectsSection />
       </div>
 
       <div id="Qualifications">
