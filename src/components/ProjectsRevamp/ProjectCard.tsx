@@ -21,13 +21,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, index }) => {
             className="group relative"
         >
             {/* Glow Effect */}
-            <div className="absolute -inset-0.5 bg-gradient-to-r from-neon-cyan via-purple-500 to-neon-pink opacity-30 group-hover:opacity-100 blur transition duration-500 rounded-2xl" />
+            <div className="absolute -inset-0.5 bg-neon-cyan/20 opacity-0 group-hover:opacity-100 blur transition duration-500 rounded-2xl" />
 
             <div className="relative h-full bg-dark-bg-secondary border border-glass-border rounded-2xl overflow-hidden flex flex-col">
                 <div className="p-6 md:p-8 flex-grow flex flex-col">
                     {/* Header */}
                     <div className="flex justify-between items-start mb-4">
-                        <h3 className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 group-hover:from-neon-cyan group-hover:to-white transition-all duration-300">
+                        <h3 className="text-2xl font-bold text-neon-cyan group-hover:text-white transition-colors duration-300">
                             {project.title}
                         </h3>
                         <div className="flex gap-3">

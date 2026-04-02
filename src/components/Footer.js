@@ -55,8 +55,8 @@ const Footer = () => {
   return (
     <footer className="relative overflow-hidden">
 
-      {/* Gradient Line */}
-      <div className="h-px bg-gradient-primary"></div>
+      {/* Separator Line */}
+      <div className="h-px bg-neon-cyan/20"></div>
 
       <div className="container mx-auto px-4 py-16 relative z-10">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
@@ -69,7 +69,7 @@ const Footer = () => {
             className="text-center md:text-left"
           >
             <h3 className="text-2xl font-bold text-text-primary mb-4">
-              <span className="bg-gradient-primary bg-clip-text text-transparent">
+              <span className="text-neon-cyan">
                 Shoaib Asim
               </span>
             </h3>
@@ -168,25 +168,11 @@ const Footer = () => {
               viewport={{ once: true }}
               className="text-text-tertiary text-sm flex items-center space-x-2"
             >
-              <span>© 2024 Mohammed Shoaib Asim. All Rights Reserved.</span>
-              <motion.span
-                animate={{ scale: [1, 1.2, 1] }}
-                transition={{ duration: 1.5, repeat: Infinity }}
-                className="text-neon-pink"
-              >
-                <FaHeart size={12} />
-              </motion.span>
+              <span>© 2026 Mohammed Shoaib Asim. All Rights Reserved.</span>
+              
             </motion.p>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-              viewport={{ once: true }}
-              className="text-text-tertiary text-sm"
-            >
-              Built with <span className="text-neon-cyan">React</span> & <span className="text-neon-cyan">Next.js</span>
-            </motion.p>
+            
         </div>
       </div>
     </div>

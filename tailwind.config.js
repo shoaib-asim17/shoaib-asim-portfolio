@@ -38,10 +38,6 @@ module.exports = {
         'mono': ['JetBrains Mono', 'monospace'],
       },
       backgroundImage: {
-        'gradient-primary': 'linear-gradient(135deg, #00FFFF 0%, #7A00FF 100%)',
-        'gradient-secondary': 'linear-gradient(135deg, #7A00FF 0%, #FF00C8 100%)',
-        'gradient-accent': 'linear-gradient(135deg, #FF00C8 0%, #00FFFF 100%)',
-        'gradient-bg': 'linear-gradient(135deg, #0D0D0D 0%, #1A1A1A 50%, #0D0D0D 100%)',
       },
       boxShadow: {
         'glow-primary': '0 0 20px rgba(0, 255, 255, 0.3)',

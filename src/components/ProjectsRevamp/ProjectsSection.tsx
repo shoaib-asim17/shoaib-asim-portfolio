@@ -23,14 +23,14 @@ const ProjectsSection = () => {
                     className="text-center mb-20"
                 >
                     <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-neon-cyan to-neon-purple">
+                        <span className="text-neon-cyan">
                             Featured Projects
                         </span>
                     </h2>
                     <p className="text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
                         A selection of production-grade applications demonstrating engineering depth, complex system architecture, and real-world impact.
                     </p>
-                    <div className="w-24 h-1.5 bg-gradient-to-r from-neon-cyan to-neon-purple mx-auto mt-8 rounded-full" />
+                    <div className="w-24 h-1.5 bg-neon-cyan mx-auto mt-8 rounded-full" />
                 </motion.div>
 
                 {/* Projects Grid */}
@@ -52,7 +52,7 @@ const ProjectsSection = () => {
                         href="#Contact"
                         className="inline-block px-10 py-4 text-lg font-semibold bg-white/5 hover:bg-white/10 border border-glass-border hover:border-neon-cyan rounded-full transition-all duration-300 backdrop-blur-sm group"
                     >
-                        <span className="bg-clip-text text-transparent bg-gradient-to-r from-white to-gray-400 group-hover:text-white">
+                        <span className="text-text-secondary group-hover:text-neon-cyan transition-colors">
                             Discuss Your Next Project
                         </span>
                     </a>

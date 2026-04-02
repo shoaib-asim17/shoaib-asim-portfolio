@@ -31,9 +31,9 @@ const cardData = [
     icon: <FaLightbulb size={28} />,
   },
   {
-    title: "Work on Data Panther Projects",
+    title: "Work on tecverse Projects",
     description:
-      "Engaged in real-world projects at Data Panther, integrating MERN stack and Python full-stack solutions, and building LLM-powered applications.",
+      "Engaged in real-world projects at tecverse, integrating MERN stack and Python full-stack solutions, and building LLM-powered applications.",
     icon: <FaPython size={28} />,
   },
   {

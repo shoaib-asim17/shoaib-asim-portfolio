@@ -14,7 +14,7 @@ const projects = [
     githubLink: "https://github.com/yourusername/notes-app",
     liveLink: "#",
     icon: <FaRegStickyNote className="text-neon-cyan text-4xl" />,
-    gradient: "from-neon-cyan to-blue-500",
+    accentColor: "neon-cyan",
     technologies: ["React", "Node.js", "MongoDB", "Express"],
   },
   {
@@ -26,7 +26,7 @@ const projects = [
     githubLink: "https://github.com/yourusername/chat-app",
     liveLink: "#",
     icon: <FaComments className="text-green-400 text-4xl" />,
-    gradient: "from-green-400 to-emerald-500",
+    accentColor: "green-400",
     technologies: ["Socket.io", "React", "Node.js", "MongoDB"],
   },
   {
@@ -38,7 +38,7 @@ const projects = [
     githubLink: "https://github.com/yourusername/project-management-system",
     liveLink: "#",
     icon: <FaTasks className="text-neon-pink text-4xl" />,
-    gradient: "from-neon-pink to-red-500",
+    accentColor: "neon-pink",
     technologies: ["React", "Redux", "Node.js", "PostgreSQL"],
   },
 ];
@@ -59,14 +59,14 @@ const Card = ({ project, index }) => {
       className="group relative"
     >
       {/* Glow Effect */}
-      <div className={`absolute inset-0 bg-gradient-to-r ${project.gradient} opacity-0 group-hover:opacity-20 rounded-2xl blur-xl transition-opacity duration-500`} />
+      <div className="absolute inset-0 bg-dark-bg-tertiary/20 opacity-0 group-hover:opacity-100 rounded-2xl blur-xl transition-opacity duration-500" />
       
       {/* Main Card */}
       <div className="relative bg-dark-bg-secondary/80 backdrop-blur-xl border border-glass-border rounded-2xl p-6 hover:border-neon-cyan/50 transition-all duration-500 overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-primary rounded-full blur-2xl" />
-          <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-secondary rounded-full blur-2xl" />
+          <div className="absolute top-0 right-0 w-32 h-32 bg-dark-bg-tertiary rounded-full blur-2xl" />
+          <div className="absolute bottom-0 left-0 w-24 h-24 bg-dark-bg-tertiary rounded-full blur-2xl" />
         </div>
 
         {/* Icon */}
@@ -146,12 +146,12 @@ const Projects = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-text-primary mb-4">
-            Innovative <span className="bg-gradient-primary bg-clip-text text-transparent">Creations</span>
-      </h2>
+            Innovative <span className="text-neon-cyan">Creations</span>
+          </h2>
           <p className="text-text-secondary text-lg max-w-2xl mx-auto mb-6">
             Explore my portfolio of cutting-edge projects that showcase modern web development and innovative solutions.
           </p>
-          <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-neon-cyan mx-auto rounded-full"></div>
         </motion.div>
 
         {/* Projects Grid */}
@@ -184,7 +184,7 @@ const Projects = () => {
             }}
             whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0, 255, 255, 0.4)" }}
             whileTap={{ scale: 0.95 }}
-            className="px-8 py-4 bg-gradient-primary text-dark-bg font-semibold rounded-lg hover:shadow-glow-primary transition-all duration-300"
+            className="px-8 py-4 bg-neon-cyan text-dark-bg font-semibold rounded-lg hover:shadow-glow-primary transition-all duration-300"
           >
             Let's Work Together
           </motion.button>

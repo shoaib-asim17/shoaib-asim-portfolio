@@ -10,20 +10,20 @@ const QuoteCard = ({ quote, photo, name, isRight }) => {
       animate={{ opacity: 1, x: 0 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className={`max-w-md w-full rounded-xl overflow-hidden m-4 p-6 
-      bg-gradient-to-r from-zinc-900 to-teal-600 shadow-lg hover:shadow-2xl
+      bg-dark-bg-tertiary border border-glass-border shadow-lg hover:shadow-2xl
       flex items-center lg:justify-${isRight ? "end" : "start"} 
       ${isRight ? "ml-auto" : "mr-auto"}`}
     >
       <img
-        className="w-16 h-16 rounded-full mr-4 object-cover border-2 border-teal-400"
+        className="w-16 h-16 rounded-full mr-4 object-cover border-2 border-neon-cyan"
         src={photo}
         alt={name}
       />
       <div>
-        <h2 className="text-xl lg:text-2xl font-semibold text-teal-100 mb-2">
+        <h2 className="text-xl lg:text-2xl font-semibold text-text-primary mb-2">
           {name}
         </h2>
-        <p className="text-gray-200 text-sm lg:text-base">{quote}</p>
+        <p className="text-text-secondary text-sm lg:text-base">{quote}</p>
       </div>
     </motion.div>
   );

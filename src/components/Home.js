@@ -78,7 +78,7 @@ const Home = () => {
               transition={{ delay: 0.4, duration: 0.8 }}
               className="text-5xl lg:text-7xl font-bold text-text-primary mb-6"
             >
-              <span className="text-[#A3485A]">
+              <span className="text-white">
                 Mohammed Shoaib Asim
               </span>
             </motion.h1>
@@ -90,7 +90,7 @@ const Home = () => {
               transition={{ delay: 0.6, duration: 0.6 }}
               className="text-2xl lg:text-3xl text-text-secondary mb-8"
             >
-              <span className="font-light">GenAI | Python | Software Developer @ Data Panther </span>
+              <span className="font-light">GenAI | Python | Software Developer @ tecverse </span>
               <br />
               {/* <span className="text-neon-cyan font-medium">
                 MERN Stack Specialist
@@ -115,16 +115,16 @@ const Home = () => {
               className="flex flex-col sm:flex-row gap-6 justify-center lg:justify-start"
             >
               <motion.a
-                href="/software-developer.pdf"
+                href="/FullStackDeveloper.pdf"
                 target="_blank"
                 whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0, 255, 255, 0.4)" }}
                 whileTap={{ scale: 0.95 }}
-                className="group relative px-8 py-4 bg-gradient-primary text-dark-bg font-semibold rounded-lg overflow-hidden"
+                className="group relative px-8 py-4 bg-neon-cyan text-dark-bg font-semibold rounded-lg overflow-hidden"
               >
-                <div className="absolute inset-0 bg-[#CD1818]" />
+                <div className="absolute inset-0 bg-neon-cyan" />
                 <div className="relative flex items-center space-x-2">
-                  <FaDownload className="w-5 h-5 text-white" />
-                  <span className="text-white">Download Resume</span>
+                  <FaDownload className="w-5 h-5 text-dark-bg" />
+                  <span className="text-dark-bg">Download Resume</span>
                 </div>
               </motion.a>
 
@@ -183,19 +183,18 @@ const Home = () => {
           >
             <div className="relative">
               {/* Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-primary rounded-full blur-2xl opacity-30 animate-pulse" />
 
               {/* Profile Image Container */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 className="relative w-80 h-80 lg:w-96 lg:h-96"
               >
-                <div className="absolute inset-0 bg-gradient-primary rounded-full p-1">
+                <div className="absolute inset-0 border-2 border-neon-cyan rounded-full p-1">
                   <div className="w-full h-full bg-dark-bg-secondary rounded-full p-4">
                     <img
                       src="/me.jpeg"
                       alt="Mohammed Shoaib Asim"
-                      className="w-full h-full object-cover rounded-full border-2 border-neon-cyan"
+                      className="w-full h-full object-cover rounded-full"
                     />
                   </div>
                 </div>

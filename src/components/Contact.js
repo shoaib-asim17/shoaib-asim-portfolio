@@ -121,12 +121,12 @@ const Contact = () => {
                     className="text-center mb-16"
                 >
                     <h2 className="text-4xl lg:text-5xl font-bold text-text-primary mb-4">
-                        Let's <span className="bg-gradient-primary bg-clip-text text-transparent">Connect</span>
+                        Let's <span className="text-neon-cyan">Connect</span>
                     </h2>
                     <p className="text-text-secondary text-lg max-w-2xl mx-auto mb-6">
                         Ready to bring your ideas to life? Let's discuss your next project and create something amazing together.
                     </p>
-                    <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full"></div>
+                    <div className="w-24 h-1 bg-neon-cyan mx-auto rounded-full"></div>
                 </motion.div>
 
                 <div className="grid lg:grid-cols-2 gap-12 items-start">
@@ -306,7 +306,7 @@ const Contact = () => {
                                 className={`w-full py-4 px-6 rounded-lg font-semibold transition-all duration-300 ${
                                     loading 
                                         ? 'bg-gray-600 text-gray-400 cursor-not-allowed' 
-                                        : 'bg-gradient-primary text-dark-bg hover:shadow-glow-primary'
+                                        : 'bg-neon-cyan text-dark-bg hover:shadow-glow-primary'
                                 }`}
                             >
                                 {loading ? (

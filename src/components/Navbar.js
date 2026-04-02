@@ -64,7 +64,7 @@ const Navbar = () => {
                 alt="Shoaib Asim"
                 className="w-12 h-12 rounded-full"
               />
-              <div className="absolute inset-0 rounded-full bg-gradient-primary opacity-20 animate-pulse"></div>
+              <div className="absolute inset-0 rounded-full border border-neon-cyan opacity-30 animate-pulse"></div>
           </div>
            
           </motion.div>

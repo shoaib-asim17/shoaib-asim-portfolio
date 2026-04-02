@@ -5,7 +5,7 @@ const qualificationsData = [
 
   {
     date: 'Present',
-    title: 'Software Developer at Data Panther',
+    title: 'Software Developer at tecverse',
     description: 'Contributing to the development of scalable web applications and AI-powered solutions using MERN stack and Python Full Stack technologies.',
   },
   {

@@ -53,9 +53,9 @@ const AboutMe = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-text-primary mb-4">
-            About <span className="bg-gradient-primary bg-clip-text text-transparent">Me</span>
+            About <span className="text-neon-cyan">Me</span>
           </h2>
-          <div className="w-24 h-1 bg-gradient-primary mx-auto rounded-full"></div>
+          <div className="w-24 h-1 bg-neon-cyan mx-auto rounded-full"></div>
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -69,14 +69,14 @@ const AboutMe = () => {
           >
             <div className="relative">
               {/* Glow Effect */}
-              <div className="absolute inset-0 bg-gradient-primary rounded-full blur-2xl opacity-30 animate-pulse" />
+              <div className="absolute inset-0 bg-neon-cyan rounded-full blur-2xl opacity-20 animate-pulse" />
 
               {/* Profile Image Container */}
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 className="relative w-80 h-80"
               >
-                <div className="absolute inset-0 bg-gradient-primary rounded-full p-1">
+                <div className="absolute inset-0 border-2 border-neon-cyan rounded-full p-1">
                   <div className="w-full h-full bg-dark-bg-secondary rounded-full p-4">
                     <img
                       src="/me.jpeg"
@@ -124,7 +124,7 @@ const AboutMe = () => {
                   Mohammed Shoaib Asim
                 </h3>
                 <p className="text-text-secondary text-lg mb-2">
-                  GenAI | Python | Software Developer @ Data Panther                </p>
+                  GenAI | Python | Software Developer @ tecverse                </p>
                 <p className="text-neon-cyan font-medium text-lg">
                   Full Stack Developer | AI & Web Solutions | Innovative Problem Solver
                 </p>
@@ -139,7 +139,7 @@ const AboutMe = () => {
                 className="mb-8"
               >
                 <p className="text-text-tertiary text-lg leading-relaxed">
-                  I am a Software Developer Intern at <span className="font-semibold text-neon-cyan">Data Panther</span>,
+                  I am a Software Developer at <span className="font-semibold text-neon-cyan">tecverse</span>,
                   where I contribute to building scalable web applications and AI-powered solutions.
                   My work spans the MERN stack, Python Full Stack development, and integrating Large Language Models (LLMs)
                   into practical applications to enhance automation and intelligence. I am passionate about developing innovative
